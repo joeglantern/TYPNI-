@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, Home, Calendar, BookOpen, HeartHandshake, Info, Briefcase, Mail, Heart, Users, LogIn, Moon, Sun } from 'lucide-react'
+import { Menu, X, Home, Calendar, BookOpen, HeartHandshake, Info, Briefcase, Mail, Heart, Users, LogIn, Moon, Sun, Building2 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -16,7 +16,7 @@ const navItems = [
   { href: '/about', label: 'About', icon: Info },
   { href: '/programs', label: 'Programs', icon: Briefcase },
   { href: '/contact', label: 'Contact', icon: Mail },
-  { href: '/donate', label: 'Donate', icon: Heart }
+  { href: '/partnerships', label: 'Partners', icon: Building2 }
 ]
 
 export default function Header() {
