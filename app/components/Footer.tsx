@@ -119,27 +119,17 @@ export function Footer() {
             <h3 className="text-lg font-semibold">Follow Us</h3>
             <div className="flex gap-4">
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://facebook.com/typni" target="_blank" rel="noopener noreferrer">
-                  <Facebook className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <a href="https://twitter.com/typni" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <a href="https://instagram.com/typni" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/typn_i" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
                   <Instagram className="h-5 w-5" />
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://youtube.com/@typni" target="_blank" rel="noopener noreferrer">
-                  <Youtube className="h-5 w-5" />
+                <a href="https://twitter.com/typn_i" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter/X">
+                  <Twitter className="h-5 w-5" />
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://tiktok.com/@typni" target="_blank" rel="noopener noreferrer">
+                <a href="https://tiktok.com/@typni_" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok">
                   <svg
                     viewBox="0 0 24 24"
                     className="h-5 w-5 fill-current"

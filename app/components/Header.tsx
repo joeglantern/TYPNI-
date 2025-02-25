@@ -16,8 +16,7 @@ const navItems = [
   { href: '/about', label: 'About', icon: Info },
   { href: '/programs', label: 'Programs', icon: Briefcase },
   { href: '/contact', label: 'Contact', icon: Mail },
-  { href: '/donate', label: 'Donate', icon: Heart },
-  { href: '/partners', label: 'Partners', icon: Users },
+  { href: '/donate', label: 'Donate', icon: Heart }
 ]
 
 export default function Header() {

@@ -409,24 +409,24 @@ function HomeContent() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
+        {[
+          {
               title: "Active Members",
               startValue: 1000,
               endValue: 5000,
               icon: Users2,
               gradient: "from-blue-500 to-cyan-500",
               speed: 2000
-            },
-            {
+          },
+          {
               title: "Countries Reached",
               startValue: 10,
               endValue: 50,
               icon: Globe,
               gradient: "from-purple-500 to-pink-500",
               speed: 3000
-            },
-            {
+          },
+          {
               title: "Ongoing Projects",
               startValue: 100,
               endValue: 300,
@@ -438,7 +438,7 @@ function HomeContent() {
               title: "Lives Impacted",
               startValue: 2000,
               endValue: 10000,
-              icon: Award,
+            icon: Award,
               gradient: "from-green-500 to-emerald-500",
               speed: 1500
             }
@@ -471,22 +471,22 @@ function HomeContent() {
             return (
               <div 
                 key={stat.title}
-                className={cn(
+            className={cn(
                   "group relative overflow-hidden rounded-3xl p-8",
                   "hover:-translate-y-2 transform-gpu transition-all duration-500",
                   "bg-gradient-to-br from-background via-background/95 to-background/90",
                   "border border-primary/10 hover:border-primary/30",
                   "backdrop-blur-xl shadow-lg hover:shadow-2xl",
                   "flex flex-col items-center text-center",
-                  "scroll-reveal",
-                  index % 2 === 0 ? "slide-in-left" : "slide-in-right",
-                  `delay-${(index + 1) * 100}`
-                )}
-              >
+                "scroll-reveal",
+                index % 2 === 0 ? "slide-in-left" : "slide-in-right",
+                `delay-${(index + 1) * 100}`
+              )}
+            >
                 {/* Gradient Background */}
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-25 transition-opacity duration-500"
-                  style={{
+                   style={{
                     background: `linear-gradient(135deg, var(--${stat.gradient.split('-')[1]}-500), var(--${stat.gradient.split('-')[2]}))`
                   }}
                 />
@@ -507,8 +507,8 @@ function HomeContent() {
                   {/* Icon */}
                   <div className="mb-6 p-4 rounded-2xl border-2 border-primary/20 group-hover:scale-110 transition-transform duration-500 bg-gradient-to-br from-background/95 to-background/80">
                     <stat.icon className="w-8 h-8 text-primary transform transition-all duration-500 group-hover:rotate-12" />
-                  </div>
-                  
+                </div>
+                
                   {/* Counter */}
                   <div className="relative mb-4">
                     <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">
@@ -518,8 +518,8 @@ function HomeContent() {
                       <span className="inline-block ml-1 animate-pulse">+</span>
                     </div>
                     <div className="absolute -inset-2 bg-primary/5 rounded-lg blur-lg group-hover:bg-primary/10 transition-colors duration-500" />
-                  </div>
-                  
+              </div>
+
                   {/* Title */}
                   <h3 className="text-xl font-bold text-foreground/90 group-hover:text-primary transition-colors duration-300 mb-3">
                     {stat.title}
@@ -551,13 +551,13 @@ function HomeContent() {
                 </div>
 
                 {/* Border Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
                   <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
                   <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
-                </div>
               </div>
+            </div>
             );
           })}
         </div>
