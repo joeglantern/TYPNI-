@@ -719,6 +719,134 @@ function HomeContent() {
         </div>
       </section>
 
+      {/* Community Impact Stories Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)]" />
+        </div>
+
+        <div className="container relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500 mb-6">
+              Community Impact Stories
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Real stories of change, growth, and impact from our global community
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Youth Leadership Program",
+                location: "Nairobi, Kenya",
+                impact: "50+ Young Leaders Trained",
+                story: "Transforming local youth into community leaders through intensive mentorship and skill development.",
+                gradient: "from-blue-500 to-cyan-500",
+                image: "/images/youth-leadership.jpg"
+              },
+              {
+                title: "Digital Skills Workshop",
+                location: "Remote, Global",
+                impact: "200+ Students Empowered",
+                story: "Bridging the digital divide by providing free coding and digital literacy education.",
+                gradient: "from-purple-500 to-pink-500",
+                image: "/images/digital-skills.jpg"
+              },
+              {
+                title: "Community Garden Initiative",
+                location: "Mumbai, India",
+                impact: "5 Sustainable Gardens Created",
+                story: "Creating sustainable food sources while teaching environmental stewardship.",
+                gradient: "from-green-500 to-emerald-500",
+                image: "/images/community-garden.jpg"
+              }
+            ].map((story, index) => (
+              <div
+                key={story.title}
+                className={cn(
+                  "group relative overflow-hidden rounded-2xl",
+                  "transform transition-all duration-500 hover:-translate-y-2",
+                  "border border-primary/10 hover:border-primary/30",
+                  "bg-gradient-to-br from-background/95 to-background/50 backdrop-blur-xl"
+                )}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                     style={{
+                       background: `linear-gradient(to bottom right, var(--${story.gradient.split('-')[1]}-500), var(--${story.gradient.split('-')[2]}))`
+                     }} />
+                
+                <div className="p-6 flex flex-col h-full">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      {story.title}
+                    </h3>
+                    <div className="flex items-center text-sm text-muted-foreground mb-2">
+                      <Globe className="w-4 h-4 mr-1" />
+                      {story.location}
+                    </div>
+                    <div className="text-sm font-semibold text-primary">
+                      {story.impact}
+                    </div>
+                  </div>
+                  
+                  <p className="text-muted-foreground mb-6 flex-grow">
+                    {story.story}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <Button
+                      variant="ghost"
+                      className="text-primary hover:text-primary/80 p-0 h-auto font-semibold"
+                    >
+                      Read Full Story
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                    
+                    <div className="flex -space-x-2">
+                      {[...Array(3)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="w-8 h-8 rounded-full border-2 border-background bg-primary/10 flex items-center justify-center text-xs font-medium"
+                        >
+                          {String.fromCharCode(65 + i)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Animated Border */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-x-0 top-0 h-px animate-border-width">
+                    <div className="w-full h-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 h-px animate-border-width">
+                    <div className="w-full h-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                  </div>
+                  <div className="absolute inset-y-0 left-0 w-px animate-border-height">
+                    <div className="w-full h-full bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
+                  </div>
+                  <div className="absolute inset-y-0 right-0 w-px animate-border-height">
+                    <div className="w-full h-full bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Button
+              size="lg"
+              className="bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary/80"
+            >
+              Explore More Stories
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Events Calendar Section */}
       <section className="container px-4">
         <ScrollAnimation>
