@@ -327,7 +327,7 @@ function HomeContent() {
                 <Button 
                   asChild 
                   size="lg" 
-                  className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#dc2626]/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
                 >
                   <Link href={isAuthenticated ? "/volunteer" : "/membership"}>
                     {isAuthenticated ? "Start Volunteering" : "Register Now"}
@@ -338,7 +338,7 @@ function HomeContent() {
                   asChild 
                   size="lg" 
                   variant="outline"
-                  className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm"
+                  className="w-full sm:w-auto bg-maroon-700 border-maroon-700 text-white hover:bg-maroon-800 hover:border-maroon-800 transition-all"
                 >
                   <Link href="/about">
                     Learn More
@@ -351,7 +351,7 @@ function HomeContent() {
                   asChild 
                   size="lg" 
                   variant="outline"
-                  className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm"
+                  className="w-full sm:w-auto bg-red-600 border-red-600 text-white hover:bg-red-700 hover:border-red-700 transition-all"
                 >
                   <Link href="/announcements">
                     Announcements
@@ -361,7 +361,7 @@ function HomeContent() {
                 <Button 
                   asChild 
                   size="lg" 
-                  className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#dc2626]/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                  className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
                 >
                   <Link href="/chat">
                     Join Chat
@@ -587,13 +587,13 @@ function HomeContent() {
                  }}>
               <div className="absolute -inset-4 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full blur-2xl opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
               
-              <div className="relative w-[400px] h-[400px] rounded-full bg-black/90 p-8">
+              <div className="relative w-[300px] h-[300px] rounded-full bg-black/90 p-6">
                 <div className="absolute inset-0 flex items-center justify-center opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                   <Image
                     src="/logo.png"
                     alt="TYPNI Logo"
-                    width={300}
-                    height={300}
+                    width={200}
+                    height={200}
                     className="animate-pulse-slow"
                   />
                 </div>
@@ -603,10 +603,10 @@ function HomeContent() {
                   <div className="absolute inset-2 rounded-full border-2 border-primary/10 animate-spin" style={{ animationDuration: '15s' }} />
                   
                   <div className="text-center z-10 transform hover:scale-110 transition-all duration-300">
-                    <div className="text-6xl font-mono font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500 animate-pulse-slow tracking-wider" id="digital-clock">
+                    <div className="text-4xl font-mono font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-blue-500 animate-pulse-slow tracking-wider" id="digital-clock">
                       {new Date().toLocaleTimeString()}
                     </div>
-                    <div className="mt-4 text-lg text-primary/80 font-medium tracking-wider">
+                    <div className="mt-3 text-base text-primary/80 font-medium tracking-wider">
                       {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
                     </div>
                   </div>
