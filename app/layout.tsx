@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
 import ClientLayout from './client-layout'
 import GoatCounter from '@/components/GoatCounter'
+import SearchParamsProvider from '@/components/SearchParamsProvider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -58,7 +59,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ClientLayout>{children}</ClientLayout>
+          <SearchParamsProvider>
+            <ClientLayout>{children}</ClientLayout>
+          </SearchParamsProvider>
           <GoatCounter />
         </ThemeProvider>
       </body>
