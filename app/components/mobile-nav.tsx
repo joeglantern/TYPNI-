@@ -19,16 +19,18 @@ import { supabase } from "@/lib/supabase"
 import { Home, Book, Calendar, Edit, Image as ImageIcon, Info, Mail, User, Settings, Handshake, CreditCard } from 'lucide-react'
 import { LucideIcon } from 'lucide-react'
 
-interface MobileNavProps {
-  links?: Array<{
-    href: string
-    label: string
-    icon: LucideIcon
-  }>
+export interface NavLink {
+  href: string
+  label: string
+  icon: LucideIcon
+}
+
+export interface MobileNavProps {
+  links: NavLink[]
   currentPath?: string
 }
 
-const defaultLinks = [
+const defaultLinks: NavLink[] = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/programs', label: 'Programs', icon: Book },
   { href: '/events', label: 'Events', icon: Calendar },

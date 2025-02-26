@@ -5,14 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { MobileNav } from '@/components/mobile-nav'
+import { MobileNav, NavLink } from '@/components/mobile-nav'
 import { Home, Info, Calendar, BookOpen, Heart, Phone, Users, LogIn, UserPlus, User, GraduationCap, Loader2, Handshake, CreditCard } from 'lucide-react'
 import Footer from '@/components/Footer'
 import { NotificationComponent } from './components/Notification'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 
-const publicNavLinks = [
+const publicNavLinks: NavLink[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: Info },
   { href: "/events", label: "Events", icon: Calendar },
@@ -24,7 +24,7 @@ const publicNavLinks = [
   { href: "/contact", label: "Contact", icon: Phone },
 ]
 
-const authNavLinks = [
+const authNavLinks: NavLink[] = [
   { href: "/auth/login", label: "Login", icon: LogIn },
   { href: "/auth/signup", label: "Sign Up", icon: UserPlus },
 ]
