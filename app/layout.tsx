@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
   keywords: ['youth empowerment', 'leadership', 'community action', 'education', 'social change'],
   authors: [{ name: 'TYPNI Team' }],
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
