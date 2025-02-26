@@ -378,7 +378,7 @@ function HomeContent() {
               </p>
             </div>
           </div>
-          <Carousel section="programs" aspectRatio="wide" className="max-w-6xl mx-auto" />
+          <Carousel aspectRatio="wide" className="max-w-6xl mx-auto" />
         </div>
       </section>
 
