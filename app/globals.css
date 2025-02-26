@@ -4,48 +4,48 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 240 20% 99%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 334 86% 38%; /* TYPNI theme color: #a1205c */
+    --primary: 222 47% 11%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 334 86% 38%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 334 86% 38%;
-    --radius: 0.5rem;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 222 47% 11%;
+    --radius: 0.75rem;
   }
  
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 222 47% 11%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 222 47% 11%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 0 0% 98%;
-    --primary: 334 86% 45%; /* Slightly lighter for dark mode */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 91% 60%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 334 86% 45%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 334 86% 45%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 217 91% 60%;
   }
 }
  
@@ -55,28 +55,51 @@
   }
   
   html {
-    @apply overflow-x-hidden;
+    @apply overflow-x-hidden scroll-smooth;
     width: 100%;
     position: relative;
-    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground overflow-x-hidden antialiased;
     width: 100%;
     position: relative;
   }
 }
 
-/* Feature card hover animation */
+/* Modern card styling */
+.glass-card {
+  @apply relative overflow-hidden rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+.glass-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-300;
+}
+
+.glass-card:hover::before {
+  @apply opacity-100;
+}
+
+/* Enhanced feature card */
 .feature-card {
-  @apply relative overflow-hidden transition-all duration-300 hover:shadow-xl;
+  @apply relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-xl;
   transform: translateY(0);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary), 0.05) 0%,
+    rgba(var(--accent), 0.05) 100%
+  );
 }
 
 .feature-card::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 opacity-0 transition-opacity duration-300;
+  @apply absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/5 opacity-0 transition-opacity duration-300;
 }
 
 .feature-card:hover {
@@ -93,6 +116,26 @@
 
 .feature-card:hover .icon-wrapper {
   transform: scale(1.1);
+}
+
+/* Modern button hover effect */
+.btn-hover-effect {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.btn-hover-effect::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] opacity-0 transition-all duration-300;
+}
+
+.btn-hover-effect:hover::before {
+  @apply opacity-10;
+  animation: gradient-x 3s linear infinite;
+}
+
+@keyframes gradient-x {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
 }
 
 /* Loading spinner with theme color */
