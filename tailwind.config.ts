@@ -103,7 +103,7 @@ const config = {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0)' },
         },
-        "scroll-up": {
+        "scroll-up-main": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(-33.33%)" },
         },
@@ -180,7 +180,7 @@ const config = {
             transform: 'translateX(0)'
           }
         },
-        'scroll-up': {
+        'scroll-vertical': {
           '0%': {
             transform: 'translateY(0)'
           },
@@ -188,7 +188,7 @@ const config = {
             transform: 'translateY(-100%)'
           }
         },
-        'scroll-up-delayed': {
+        'scroll-vertical-delayed': {
           '0%': {
             transform: 'translateY(20%)'
           },
@@ -202,8 +202,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "scroll": "scroll 40s linear infinite",
         "scroll-reverse": "scroll-reverse 40s linear infinite",
-        "scroll-up": "scroll-up 30s linear infinite",
-        "scroll-up-delayed": "scroll-up 30s linear infinite",
+        "scroll-up": "scroll-up-main 30s linear infinite",
+        "scroll-up-delayed": "scroll-vertical-delayed 30s linear infinite",
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
         "marquee": "marquee 25s linear infinite",
@@ -215,8 +215,8 @@ const config = {
         'fade-in-down': 'fade-in-down 0.6s ease-out forwards',
         'fade-in-left': 'fade-in-left 0.6s ease-out forwards',
         'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
-        'scroll-up': 'scroll-up 25s linear infinite',
-        'scroll-up-delayed': 'scroll-up-delayed 25s linear infinite',
+        'scroll-vertical': 'scroll-vertical 25s linear infinite',
+        'scroll-vertical-delayed': 'scroll-vertical-delayed 25s linear infinite',
       },
       spacing: {
         '18': '4.5rem',
