@@ -4,6 +4,17 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+// Dynamically import the EarthGlobe component with no SSR
+const EarthGlobe = dynamic(() => import('./EarthGlobe'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[400px] flex items-center justify-center">
+      <div className="animate-pulse w-64 h-64 rounded-full bg-white/10" />
+    </div>
+  ),
+})
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -48,6 +59,23 @@ export default function Hero() {
       <div className="container relative z-10 px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
+            {/* Logo above text */}
+            <div className="w-48 h-48 mb-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 relative hover:bg-white/20 transition-all duration-300">
+              <Image
+                alt="YPNI Logo"
+                src="/logo.png"
+                width={200}
+                height={200}
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                priority
+              />
+              <div
+                className="absolute inset-0 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%)'
+                }}
+              />
+            </div>
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                 Young Peoples' Network International
@@ -72,33 +100,9 @@ export default function Hero() {
               </Link>
             </div>
           </div>
-          <div ref={containerRef} className="mx-auto flex items-center justify-center lg:justify-end">
-            <div className="relative aspect-square w-full max-w-[400px]">
-              <div className="glass-card absolute inset-0">
-                <Image
-                  alt="YPNI Logo"
-                  className="mx-auto h-full w-full object-cover transition-all duration-300 hover:scale-105"
-                  height={400}
-                  src="/logo.png"
-                  style={{
-                    aspectRatio: "400/400",
-                    objectFit: "cover",
-                  }}
-                  width={400}
-                  priority
-                />
-              </div>
-              <div
-                className="absolute inset-0 rounded-xl transition-opacity duration-300 group-hover:opacity-100"
-                style={{
-                  background: `radial-gradient(
-                    800px circle at calc(100% * var(--mouse-x, 0.5)) calc(100% * var(--mouse-y, 0.5)),
-                    rgba(var(--accent-rgb), 0.06),
-                    transparent 40%
-                  )`
-                }}
-              />
-            </div>
+          {/* Earth Globe */}
+          <div ref={containerRef} className="mx-auto w-full h-[500px] lg:h-full flex items-center justify-center lg:justify-end">
+            <EarthGlobe />
           </div>
         </div>
       </div>
