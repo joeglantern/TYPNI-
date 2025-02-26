@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { MobileNav } from '@/components/mobile-nav'
-import { Home, Info, Calendar, BookOpen, Heart, Phone, Users, LogIn, UserPlus, User, GraduationCap, MessagesSquare, Loader2 } from 'lucide-react'
+import { Home, Info, Calendar, BookOpen, Heart, Phone, Users, LogIn, UserPlus, User, GraduationCap, Loader2, Handshake, CreditCard } from 'lucide-react'
 import Footer from '@/components/Footer'
 import { NotificationComponent } from './components/Notification'
 import { supabase } from '@/lib/supabase'
@@ -19,8 +19,9 @@ const publicNavLinks = [
   { href: "/blog", label: "Blog", icon: BookOpen },
   { href: "/volunteer", label: "Volunteer", icon: Heart },
   { href: "/programs", label: "Programs", icon: GraduationCap },
+  { href: "/partners", label: "Partners", icon: Handshake },
+  { href: "/membership", label: "Membership", icon: CreditCard },
   { href: "/contact", label: "Contact", icon: Phone },
-  { href: "/chat", label: "Chat", icon: MessagesSquare },
 ]
 
 const authNavLinks = [
@@ -209,7 +210,7 @@ export default function ClientLayout({
                 <ThemeToggle />
               </nav>
               <div className="md:hidden">
-                <MobileNav />
+                <MobileNav links={navLinks} />
               </div>
             </div>
           </header>

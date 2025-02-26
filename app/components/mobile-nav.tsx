@@ -16,7 +16,7 @@ import {
 import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
 import { supabase } from "@/lib/supabase"
-import { Home, Book, Calendar, Edit, Image as ImageIcon, MessageCircle, Info, Mail, User, Settings } from 'lucide-react'
+import { Home, Book, Calendar, Edit, Image as ImageIcon, Info, Mail, User, Settings, Handshake, CreditCard } from 'lucide-react'
 import { LucideIcon } from 'lucide-react'
 
 interface MobileNavProps {
@@ -34,7 +34,8 @@ const defaultLinks = [
   { href: '/events', label: 'Events', icon: Calendar },
   { href: '/blog', label: 'Blog', icon: Edit },
   { href: '/gallery', label: 'Gallery', icon: ImageIcon },
-  { href: '/chat', label: 'Chat', icon: MessageCircle },
+  { href: '/partners', label: 'Partners', icon: Handshake },
+  { href: '/membership', label: 'Membership', icon: CreditCard },
   { href: '/about', label: 'About', icon: Info },
   { href: '/contact', label: 'Contact', icon: Mail },
 ]
