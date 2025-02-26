@@ -18,11 +18,10 @@ const publicNavLinks: NavLink[] = [
   { href: "/about", label: "About", icon: Info },
   { href: "/events", label: "Events", icon: Calendar },
   { href: "/blog", label: "Blog", icon: BookOpen },
-  { href: "/volunteer", label: "Volunteer", icon: Heart },
   { href: "/programs", label: "Programs", icon: GraduationCap },
   { href: "/partners", label: "Partners", icon: Handshake },
   { href: "/membership", label: "Membership", icon: CreditCard },
-  { href: "/contact", label: "Contact", icon: Phone },
+  { href: "/donate", label: "Donate", icon: Heart },
 ]
 
 const authNavLinks: NavLink[] = [
@@ -208,7 +207,9 @@ export default function ClientLayout({
                     </Link>
                   )
                 })}
-                <ThemeToggle />
+                <div className="border-l pl-4 ml-2">
+                  <ThemeToggle />
+                </div>
               </nav>
               <div className="md:hidden">
                 <MobileNav links={navLinks} currentPath={pathname} />
