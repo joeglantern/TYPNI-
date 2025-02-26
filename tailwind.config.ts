@@ -140,6 +140,62 @@ const config = {
             strokeDashoffset: '-10',
           },
         },
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        'fade-in-down': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-20px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        'fade-in-left': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-20px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          }
+        },
+        'fade-in-right': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(20px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          }
+        },
+        'scroll-up': {
+          '0%': {
+            transform: 'translateY(0)'
+          },
+          '100%': {
+            transform: 'translateY(-100%)'
+          }
+        },
+        'scroll-up-delayed': {
+          '0%': {
+            transform: 'translateY(20%)'
+          },
+          '100%': {
+            transform: 'translateY(-80%)'
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -155,6 +211,12 @@ const config = {
         'bounce-slow': 'bounce 3s infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'dash': 'dash 1.5s linear infinite',
+        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+        'fade-in-down': 'fade-in-down 0.6s ease-out forwards',
+        'fade-in-left': 'fade-in-left 0.6s ease-out forwards',
+        'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
+        'scroll-up': 'scroll-up 25s linear infinite',
+        'scroll-up-delayed': 'scroll-up-delayed 25s linear infinite',
       },
       spacing: {
         '18': '4.5rem',

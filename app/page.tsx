@@ -21,6 +21,8 @@ import Hero from '@/app/components/Hero'
 import { Heart } from 'lucide-react'
 import LogoStrip from '@/app/components/LogoStrip'
 import WeConnectSection from '@/app/components/WeConnectSection'
+import { useInView } from 'react-intersection-observer'
+import GallerySection from './components/GallerySection'
 
 interface Event {
   id: number
@@ -74,6 +76,18 @@ function HomeContent() {
   const [isClockSoundPlaying, setIsClockSoundPlaying] = useState(false)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
 
   useEffect(() => {
     checkAuth()
@@ -284,10 +298,23 @@ function HomeContent() {
   return (
     <>
       <Hero />
-      <LogoStrip />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUpVariants}
+      >
+        <LogoStrip />
+      </motion.div>
       
       {/* Features Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background via-muted/50 to-background">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background via-muted/50 to-background"
+      >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -368,12 +395,27 @@ function HomeContent() {
             </Card>
             </div>
         </div>
-      </section>
+      </motion.section>
 
-      <WeConnectSection />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+      >
+        <WeConnectSection />
+      </motion.div>
+
+      <GallerySection />
 
       {/* Carousel Section */}
-      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background via-muted/50 to-background">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="w-full py-12 md:py-24 bg-gradient-to-b from-background via-muted/50 to-background"
+      >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <div className="space-y-2">
@@ -385,10 +427,16 @@ function HomeContent() {
           </div>
           <Carousel aspectRatio="wide" className="max-w-6xl mx-auto" />
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-radial from-accent/10 via-transparent to-transparent">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="w-full py-12 md:py-24 lg:py-32 border-t bg-gradient-radial from-accent/10 via-transparent to-transparent"
+      >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -410,10 +458,16 @@ function HomeContent() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Community Impact Stories Section */}
-      <section className="py-24 relative overflow-hidden">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="py-24 relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(white,transparent_85%)]" />
         </div>
@@ -538,17 +592,29 @@ function HomeContent() {
             </Button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Events Calendar Section */}
-      <section className="container px-4">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="container px-4"
+      >
         <ScrollAnimation>
           <EventsCalendar />
         </ScrollAnimation>
-      </section>
+      </motion.section>
 
       {/* Testimonials Section */}
-      <section className="relative py-24 overflow-hidden font-mono">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUpVariants}
+        className="relative py-24 overflow-hidden font-mono"
+      >
         {/* Fixed Header */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm pt-8 pb-12">
           <div className="container px-4">
@@ -625,7 +691,7 @@ function HomeContent() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Back to Top Button */}
       {showBackToTop && (
