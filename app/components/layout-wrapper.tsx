@@ -8,6 +8,8 @@ import { MainNav } from '@/app/components/main-nav'
 import { MobileNav } from '@/app/components/mobile-nav'
 import { Footer } from '@/app/components/Footer'
 import dynamic from 'next/dynamic'
+import { useSearchParamsContext } from '@/components/SearchParamsWrapper'
+import SearchParamsWrapper from '@/components/SearchParamsWrapper'
 
 // Dynamically import components that are not needed immediately
 const DynamicToaster = dynamic(() => import('@/components/ui/toaster').then(mod => mod.Toaster), {
@@ -34,10 +36,10 @@ interface LayoutWrapperProps {
   children: React.ReactNode
 }
 
-export function LayoutWrapper({ children }: LayoutWrapperProps) {
+function LayoutWrapperInner({ children }: LayoutWrapperProps) {
   const [isLoading, setIsLoading] = useState(true)
   const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParamsContext()
   const isChatRoute = pathname?.startsWith('/chat')
 
   // Show initial loading state
@@ -110,5 +112,13 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
       </div>
       <DynamicToaster />
     </div>
+  )
+}
+
+export default function LayoutWrapper({ children }: LayoutWrapperProps) {
+  return (
+    <SearchParamsWrapper>
+      <LayoutWrapperInner>{children}</LayoutWrapperInner>
+    </SearchParamsWrapper>
   )
 } 

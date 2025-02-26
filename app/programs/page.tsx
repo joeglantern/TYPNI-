@@ -26,8 +26,9 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { format } from 'date-fns'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { ClientBoundary } from '@/components/client-boundary'
+import { useRouter } from 'next/navigation'
+import { useSearchParamsContext } from '@/components/SearchParamsWrapper'
+import SearchParamsWrapper from '@/components/SearchParamsWrapper'
 
 interface Program {
   id: string
@@ -54,7 +55,8 @@ interface Program {
 
 // Move the main content to a separate client component
 function ProgramsContent() {
-  const searchParams = useSearchParams()
+  const router = useRouter()
+  const searchParams = useSearchParamsContext()
   const [programs, setPrograms] = useState<Program[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '')
@@ -62,7 +64,6 @@ function ProgramsContent() {
   const [filterLevel, setFilterLevel] = useState('all')
   const [filterFormat, setFilterFormat] = useState('all')
   const [sortBy, setSortBy] = useState<'date'>('date')
-  const router = useRouter()
 
   useEffect(() => {
     fetchPrograms()
@@ -304,10 +305,16 @@ function ProgramsContent() {
 }
 
 // Default export becomes a simple wrapper with Suspense
+function ProgramsPageInner() {
+  return (
+    <ProgramsContent />
+  )
+}
+
 export default function ProgramsPage() {
   return (
-    <ClientBoundary>
-      <ProgramsContent />
-    </ClientBoundary>
+    <SearchParamsWrapper>
+      <ProgramsPageInner />
+    </SearchParamsWrapper>
   )
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useSearchParamsContext } from './SearchParamsWrapper';
 
 declare global {
   interface Window {
@@ -11,9 +12,9 @@ declare global {
   }
 }
 
-export default function GoatCounter() {
+function GoatCounterInner() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParamsContext();
 
   useEffect(() => {
     // Load GoatCounter script
@@ -38,4 +39,14 @@ export default function GoatCounter() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+import SearchParamsWrapper from './SearchParamsWrapper';
+
+export default function GoatCounter() {
+  return (
+    <SearchParamsWrapper>
+      <GoatCounterInner />
+    </SearchParamsWrapper>
+  );
 } 
