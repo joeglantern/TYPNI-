@@ -60,7 +60,7 @@ export default function Hero() {
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             {/* Logo above text */}
-            <div className="w-48 h-48 mb-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 relative hover:bg-white/20 transition-all duration-300">
+            <div className="w-32 h-32 md:w-48 md:h-48 mb-4 md:mb-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 relative hover:bg-white/20 transition-all duration-300">
               <Image
                 alt="YPNI Logo"
                 src="/logo.png"
@@ -77,22 +77,22 @@ export default function Hero() {
               />
             </div>
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
                 Young Peoples' Network International
               </h1>
-              <p className="max-w-[600px] text-white/90 md:text-xl">
+              <p className="max-w-[600px] text-white/90 text-base md:text-xl">
                 A global network empowering young people to create positive change through collaboration, leadership, and community action.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Link
-                className="inline-flex h-10 items-center justify-center rounded-md bg-white text-black px-8 text-sm font-medium shadow transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-white text-black px-6 md:px-8 text-sm font-medium shadow transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/about"
               >
                 Learn More
               </Link>
               <Link
-                className="inline-flex h-10 items-center justify-center rounded-md border border-white text-white bg-transparent px-8 text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-10 items-center justify-center rounded-md border border-white text-white bg-transparent px-6 md:px-8 text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/volunteer"
               >
                 Get Involved
@@ -101,8 +101,10 @@ export default function Hero() {
             </div>
           </div>
           {/* Earth Globe */}
-          <div ref={containerRef} className="mx-auto w-full h-[500px] lg:h-full flex items-center justify-center lg:justify-end">
-            <EarthGlobe />
+          <div ref={containerRef} className="mx-auto w-full h-[300px] md:h-[500px] lg:h-full flex items-center justify-center lg:justify-end">
+            <div className="w-full max-w-[400px] lg:max-w-none">
+              <EarthGlobe />
+            </div>
           </div>
         </div>
       </div>
