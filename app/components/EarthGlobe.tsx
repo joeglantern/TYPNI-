@@ -21,14 +21,14 @@ export default function EarthGlobe() {
     sceneRef.current = scene
 
     // Camera setup with dynamic FOV based on screen size
-    const fov = window.innerWidth < 768 ? 90 : 75
+    const fov = window.innerWidth < 768 ? 75 : 60 // Reduced FOV for larger appearance
     const camera = new THREE.PerspectiveCamera(
       fov,
       mountRef.current.clientWidth / mountRef.current.clientHeight,
       0.1,
       1000
     )
-    camera.position.z = window.innerWidth < 768 ? 2.5 : 2
+    camera.position.z = window.innerWidth < 768 ? 2 : 1.75 // Moved camera closer
     cameraRef.current = camera
 
     // Optimized renderer setup
@@ -38,8 +38,8 @@ export default function EarthGlobe() {
       powerPreference: "high-performance",
     })
     renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // Limit pixel ratio for better performance
-    renderer.outputColorSpace = THREE.SRGBColorSpace // Updated from deprecated sRGBEncoding
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.outputColorSpace = THREE.SRGBColorSpace
     mountRef.current.appendChild(renderer.domElement)
     rendererRef.current = renderer
 
@@ -48,11 +48,11 @@ export default function EarthGlobe() {
     controls.enableDamping = true
     controls.dampingFactor = 0.05
     controls.enablePan = false
-    controls.minDistance = window.innerWidth < 768 ? 2 : 1.5
-    controls.maxDistance = window.innerWidth < 768 ? 4 : 3
-    controls.enableZoom = false // Disable zoom for better mobile experience
-    controls.autoRotate = true // Auto-rotate for better visual appeal
-    controls.autoRotateSpeed = 0.5 // Slower rotation
+    controls.minDistance = window.innerWidth < 768 ? 1.75 : 1.5 // Adjusted min distance
+    controls.maxDistance = window.innerWidth < 768 ? 3 : 2.5 // Adjusted max distance
+    controls.enableZoom = false
+    controls.autoRotate = true
+    controls.autoRotateSpeed = 0.5
     controlsRef.current = controls
 
     // Optimized texture loading
@@ -143,15 +143,15 @@ export default function EarthGlobe() {
       const height = mountRef.current.clientHeight
 
       // Update camera FOV based on screen size
-      const newFov = window.innerWidth < 768 ? 90 : 75
+      const newFov = window.innerWidth < 768 ? 75 : 60
       cameraRef.current.fov = newFov
       cameraRef.current.aspect = width / height
       cameraRef.current.updateProjectionMatrix()
 
       // Update controls
       if (controlsRef.current) {
-        controlsRef.current.minDistance = window.innerWidth < 768 ? 2 : 1.5
-        controlsRef.current.maxDistance = window.innerWidth < 768 ? 4 : 3
+        controlsRef.current.minDistance = window.innerWidth < 768 ? 1.75 : 1.5
+        controlsRef.current.maxDistance = window.innerWidth < 768 ? 3 : 2.5
       }
 
       rendererRef.current.setSize(width, height)
@@ -170,5 +170,19 @@ export default function EarthGlobe() {
     }
   }, [])
 
-  return <div ref={mountRef} className="w-full h-full min-h-[300px] md:min-h-[400px]" />
+  return (
+    <div className="relative w-full h-full min-h-[400px] md:min-h-[500px]">
+      <div ref={mountRef} className="w-full h-full" />
+      {/* Speech Bubble */}
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg animate-float">
+        <div className="relative">
+          <p className="text-sm md:text-base font-medium text-center">
+            TYPNI - We are Global! 🌍
+          </p>
+          {/* Speech bubble triangle */}
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-white dark:border-t-gray-800" />
+        </div>
+      </div>
+    </div>
+  )
 } 

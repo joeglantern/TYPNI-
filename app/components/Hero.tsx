@@ -57,7 +57,7 @@ export default function Hero() {
       </div>
 
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+        <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_700px]">
           <div className="flex flex-col justify-center space-y-4">
             {/* Logo above text */}
             <div className="w-32 h-32 md:w-48 md:h-48 mb-4 md:mb-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 relative hover:bg-white/20 transition-all duration-300">
@@ -101,8 +101,8 @@ export default function Hero() {
             </div>
           </div>
           {/* Earth Globe */}
-          <div ref={containerRef} className="mx-auto w-full h-[300px] md:h-[500px] lg:h-full flex items-center justify-center lg:justify-end">
-            <div className="w-full max-w-[400px] lg:max-w-none">
+          <div ref={containerRef} className="mx-auto w-full h-[400px] md:h-[600px] lg:h-full flex items-center justify-center lg:justify-end">
+            <div className="w-full max-w-[500px] lg:max-w-none relative">
               <EarthGlobe />
             </div>
           </div>
