@@ -76,6 +76,14 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'scroll-reverse': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
         "scroll-up": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(-33.33%)" },
@@ -94,14 +102,21 @@ const config = {
             transform: "scale(1.2)",
           },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "scroll": "scroll 40s linear infinite",
+        "scroll-reverse": "scroll-reverse 40s linear infinite",
         "scroll-up": "scroll-up 30s linear infinite",
         "scroll-up-delayed": "scroll-up 30s linear infinite",
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
+        "marquee": "marquee 25s linear infinite",
       },
       spacing: {
         '18': '4.5rem',

@@ -6,6 +6,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, Globe, Cloc
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState, useEffect } from 'react'
+import { LogoStrip } from './LogoStrip'
 
 const socialLinks = [
   { href: '#', icon: Facebook, label: 'Facebook' },
@@ -78,136 +79,139 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full border-t bg-background">
-      <div className="container py-12">
-        {/* Main Footer Content */}
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-          {/* About Section */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Image src="/logo.png" alt="TYPNI Logo" width={40} height={40} className="rounded" />
-              <h3 className="text-lg font-bold">TYPNI</h3>
+    <>
+      <LogoStrip />
+      <footer className="w-full border-t bg-background">
+        <div className="container py-12">
+          {/* Main Footer Content */}
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+            {/* About Section */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <Image src="/logo.png" alt="TYPNI Logo" width={40} height={40} className="rounded" />
+                <h3 className="text-lg font-bold">TYPNI</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                The Young Peoples' Network International (TYPNI) is dedicated to empowering youth through education, networking, and community engagement.
+              </p>
+              <div className="flex gap-4">
+                <Button variant="ghost" size="icon" asChild className="hover:text-primary">
+                  <a href="https://instagram.com/typn_i" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="icon" asChild className="hover:text-primary">
+                  <a href="https://twitter.com/typn_i" target="_blank" rel="noopener noreferrer">
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="icon" asChild className="hover:text-primary">
+                  <a href="https://tiktok.com/@typni_" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                  </a>
+                </Button>
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground">
-              The Young Peoples' Network International (TYPNI) is dedicated to empowering youth through education, networking, and community engagement.
-            </p>
-            <div className="flex gap-4">
-              <Button variant="ghost" size="icon" asChild className="hover:text-primary">
-                <a href="https://instagram.com/typn_i" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild className="hover:text-primary">
-                <a href="https://twitter.com/typn_i" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild className="hover:text-primary">
-                <a href="https://tiktok.com/@typni_" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                  </svg>
-                </a>
-              </Button>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Quick Links</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
+                </li>
+                <li>
+                  <Link href="/programs" className="hover:text-primary transition-colors">Our Programs</Link>
+                </li>
+                <li>
+                  <Link href="/events" className="hover:text-primary transition-colors">Events</Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
+                </li>
+                <li>
+                  <Link href="/gallery" className="hover:text-primary transition-colors">Gallery</Link>
+                </li>
+                <li>
+                  <Link href="/volunteer" className="hover:text-primary transition-colors">Volunteer</Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Contact Us</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary" />
+                  <a href="mailto:Niaje@typni.org" className="hover:text-primary transition-colors">Niaje@typni.org</a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <a href="tel:+254734414914" className="hover:text-primary transition-colors">+254 734 414 914</a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <a href="tel:+254758009278" className="hover:text-primary transition-colors">+254 758 009 278</a>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="h-4 w-4 text-primary mt-1" />
+                  <span>Nairobi, Kenya</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Globe className="h-4 w-4 text-primary" />
+                  <span>Global Network</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-primary" />
+                  <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Newsletter Subscription */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Newsletter</h3>
+              <p className="text-sm text-muted-foreground">
+                Subscribe to our newsletter for updates on our programs, events, and impact stories.
+              </p>
+              <form onSubmit={handleSubscribe} className="space-y-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-background"
+                  required
+                />
+                <Button type="submit" className="w-full">
+                  Subscribe
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link href="/programs" className="hover:text-primary transition-colors">Our Programs</Link>
-              </li>
-              <li>
-                <Link href="/events" className="hover:text-primary transition-colors">Events</Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-primary transition-colors">Gallery</Link>
-              </li>
-              <li>
-                <Link href="/volunteer" className="hover:text-primary transition-colors">Volunteer</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Information */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact Us</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:Niaje@typni.org" className="hover:text-primary transition-colors">Niaje@typni.org</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+254734414914" className="hover:text-primary transition-colors">+254 734 414 914</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+254758009278" className="hover:text-primary transition-colors">+254 758 009 278</a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-primary mt-1" />
-                <span>Nairobi, Kenya</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-primary" />
-                <span>Global Network</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-primary" />
-                <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter Subscription */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Newsletter</h3>
-            <p className="text-sm text-muted-foreground">
-              Subscribe to our newsletter for updates on our programs, events, and impact stories.
-            </p>
-            <form onSubmit={handleSubscribe} className="space-y-2">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-background"
-                required
-              />
-              <Button type="submit" className="w-full">
-                Subscribe
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
+          {/* Bottom Bar */}
+          <div className="mt-12 pt-8 border-t">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <p className="text-sm text-muted-foreground">
+                &copy; {new Date().getFullYear()} The Young Peoples' Network International. All rights reserved.
+              </p>
+              <div className="flex gap-4 text-sm text-muted-foreground justify-start sm:justify-end">
+                <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+                <Link href="/cookies" className="hover:text-primary transition-colors">Cookie Policy</Link>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} The Young Peoples' Network International. All rights reserved.
-            </p>
-            <div className="flex gap-4 text-sm text-muted-foreground justify-start sm:justify-end">
-              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
-              <Link href="/cookies" className="hover:text-primary transition-colors">Cookie Policy</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 } 

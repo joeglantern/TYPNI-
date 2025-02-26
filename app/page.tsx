@@ -19,6 +19,7 @@ import { motion } from 'framer-motion'
 import { ClientBoundary } from '@/components/client-boundary'
 import Hero from '@/app/components/Hero'
 import { Heart } from 'lucide-react'
+import { LogoStrip } from '@/app/components/LogoStrip'
 
 interface Event {
   id: number
@@ -282,6 +283,9 @@ function HomeContent() {
   return (
     <div className="min-h-screen">
       <Hero />
+      
+      {/* Logo Strip */}
+      <LogoStrip />
       
       {/* Features Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background via-muted/50 to-background">
