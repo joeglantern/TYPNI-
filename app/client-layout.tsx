@@ -210,7 +210,7 @@ export default function ClientLayout({
                 <ThemeToggle />
               </nav>
               <div className="md:hidden">
-                <MobileNav links={navLinks} />
+                <MobileNav links={navLinks} currentPath={pathname} />
               </div>
             </div>
           </header>
