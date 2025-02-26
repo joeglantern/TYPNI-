@@ -81,12 +81,21 @@ export default function EarthGlobe() {
       setDebugInfo(prev => `${prev}\nControls initialized`)
 
       // Lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
       scene.add(ambientLight)
 
-      const pointLight = new THREE.PointLight(0xffffff, 1)
+      const pointLight = new THREE.PointLight(0xffd500, 2.5)
       pointLight.position.set(5, 3, 5)
       scene.add(pointLight)
+
+      // Add a hemisphere light for more natural lighting
+      const hemisphereLight = new THREE.HemisphereLight(0x4169e1, 0x40e0d0, 1.2)
+      scene.add(hemisphereLight)
+
+      // Add a subtle blue rim light
+      const rimLight = new THREE.PointLight(0x0077ff, 1.5)
+      rimLight.position.set(-5, 0, -5)
+      scene.add(rimLight)
       setDebugInfo(prev => `${prev}\nLighting added`)
 
       // Texture loading
@@ -120,14 +129,25 @@ export default function EarthGlobe() {
         earthDayMap.colorSpace = THREE.SRGBColorSpace
         earthDayMap.anisotropy = renderer.capabilities.getMaxAnisotropy()
 
+        // Enhance texture colors
+        const enhanceTexture = (texture: THREE.Texture) => {
+          texture.colorSpace = THREE.SRGBColorSpace
+          texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+        }
+        
+        enhanceTexture(earthNormalMap)
+        enhanceTexture(earthSpecularMap)
+        enhanceTexture(earthCloudsMap)
+
         // Create Earth
         const earthGeometry = new THREE.SphereGeometry(1, 48, 48)
         const earthMaterial = new THREE.MeshPhongMaterial({
           map: earthDayMap,
           normalMap: earthNormalMap,
           specularMap: earthSpecularMap,
-          normalScale: new THREE.Vector2(6, 6),
-          shininess: 5,
+          normalScale: new THREE.Vector2(8, 8),
+          shininess: 25,
+          specular: new THREE.Color(0x2277ff),
         })
         const earth = new THREE.Mesh(earthGeometry, earthMaterial)
         scene.add(earth)
@@ -139,8 +159,9 @@ export default function EarthGlobe() {
         const cloudsMaterial = new THREE.MeshPhongMaterial({
           map: earthCloudsMap,
           transparent: true,
-          opacity: 0.4,
+          opacity: 0.25,
           depthWrite: false,
+          blending: THREE.AdditiveBlending,
         })
         const clouds = new THREE.Mesh(cloudsGeometry, cloudsMaterial)
         scene.add(clouds)
