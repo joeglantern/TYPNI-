@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, MessagesSquare } from 'lucide-react'
 import dynamic from 'next/dynamic'
 
 // Dynamically import the EarthGlobe component with no SSR
@@ -98,11 +98,18 @@ export default function Hero() {
                 Get Involved
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
+              <Link
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary text-white px-6 md:px-8 text-sm font-medium shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                href="/chat"
+              >
+                Join Chat
+                <MessagesSquare className="ml-2 h-4 w-4" />
+              </Link>
             </div>
           </div>
           {/* Earth Globe */}
-          <div ref={containerRef} className="mx-auto w-full h-[400px] md:h-[600px] lg:h-full flex items-center justify-center lg:justify-end">
-            <div className="w-full max-w-[500px] lg:max-w-none relative">
+          <div ref={containerRef} className="mx-auto w-full h-[350px] md:h-[500px] lg:h-full flex items-center justify-center lg:justify-end">
+            <div className="w-full max-w-[400px] lg:max-w-[600px] relative">
               <EarthGlobe />
             </div>
           </div>
