@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export default function EarthGlobe() {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -39,6 +39,7 @@ export default function EarthGlobe() {
     })
     renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // Limit pixel ratio for better performance
+    renderer.outputColorSpace = THREE.SRGBColorSpace // Updated from deprecated sRGBEncoding
     mountRef.current.appendChild(renderer.domElement)
     rendererRef.current = renderer
 
@@ -70,7 +71,7 @@ export default function EarthGlobe() {
       loadTexture('/earth/8k_earth_clouds.jpg')
     ]).then(([earthDayMap, earthNormalMap, earthSpecularMap, earthCloudsMap]) => {
       // Optimize textures
-      earthDayMap.encoding = THREE.sRGBEncoding
+      earthDayMap.colorSpace = THREE.SRGBColorSpace // Updated from deprecated encoding
       earthDayMap.anisotropy = renderer.capabilities.getMaxAnisotropy()
 
       // Earth mesh with optimized geometry
