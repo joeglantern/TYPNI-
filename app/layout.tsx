@@ -54,12 +54,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b">
-            <div className="container flex items-center justify-between h-16">
-              <div className="flex-1" />
-              <ThemeToggle />
-            </div>
-          </header>
           <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
       </body>

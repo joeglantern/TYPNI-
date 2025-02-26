@@ -84,22 +84,22 @@ export default function Hero() {
                 A global network empowering young people to create positive change through collaboration, leadership, and community action.
               </p>
             </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 w-full sm:w-auto">
               <Link
-                className="inline-flex h-10 items-center justify-center rounded-md bg-white text-black px-6 md:px-8 text-sm font-medium shadow transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-11 items-center justify-center rounded-lg bg-white text-black px-6 text-sm font-medium shadow transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/about"
               >
                 Learn More
               </Link>
               <Link
-                className="inline-flex h-10 items-center justify-center rounded-md border border-white text-white bg-transparent px-6 md:px-8 text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-11 items-center justify-center rounded-lg border border-white text-white bg-transparent px-6 text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/volunteer"
               >
                 Get Involved
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
-                className="inline-flex h-10 items-center justify-center rounded-md bg-primary text-white px-6 md:px-8 text-sm font-medium shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-11 items-center justify-center rounded-lg bg-primary text-white px-6 text-sm font-medium shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/chat"
               >
                 Join Chat
