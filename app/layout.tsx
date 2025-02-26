@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import type { Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -12,7 +13,18 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+  ],
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://typni.org'),
   title: 'TYPNI - The Young Peoples\' Network International',
   description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
   keywords: ['youth empowerment', 'leadership', 'community action', 'education', 'social change'],
@@ -20,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ypni.org',
+    url: 'https://typni.org',
     title: 'TYPNI - The Young Peoples\' Network International',
     description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
     siteName: 'TYPNI',
@@ -30,15 +42,6 @@ export const metadata: Metadata = {
     title: 'TYPNI - The Young Peoples\' Network International',
     description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
-  ],
 }
 
 export default function RootLayout({
