@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ThemeToggle } from '@/components/theme-toggle'
 import ClientLayout from './client-layout'
+import GoatCounter from '@/components/GoatCounter'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,21 +13,21 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'YPNI - Young Peoples\' Network International',
+  title: 'TYPNI - The Young Peoples\' Network International',
   description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
   keywords: ['youth empowerment', 'leadership', 'community action', 'education', 'social change'],
-  authors: [{ name: 'YPNI Team' }],
+  authors: [{ name: 'TYPNI Team' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://ypni.org',
-    title: 'YPNI - Young Peoples\' Network International',
+    title: 'TYPNI - The Young Peoples\' Network International',
     description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
-    siteName: 'YPNI',
+    siteName: 'TYPNI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'YPNI - Young Peoples\' Network International',
+    title: 'TYPNI - The Young Peoples\' Network International',
     description: 'A global network empowering young people to create positive change through collaboration, leadership, and community action.',
   },
   viewport: {
@@ -55,6 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ClientLayout>{children}</ClientLayout>
+          <GoatCounter />
         </ThemeProvider>
       </body>
     </html>
