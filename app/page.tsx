@@ -19,7 +19,7 @@ import { motion } from 'framer-motion'
 import { ClientBoundary } from '@/components/client-boundary'
 import Hero from '@/app/components/Hero'
 import { Heart } from 'lucide-react'
-import { LogoStrip } from '@/app/components/LogoStrip'
+import LogoStrip from '@/app/components/LogoStrip'
 import WeConnectSection from '@/app/components/WeConnectSection'
 
 interface Event {

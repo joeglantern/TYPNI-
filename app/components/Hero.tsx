@@ -51,9 +51,9 @@ export default function Hero() {
 
       {/* Background effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-accent/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-accent/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
+        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
+        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
+        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
       </div>
 
       <div className="container relative z-10 px-4 md:px-6">
@@ -99,7 +99,7 @@ export default function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
-                className="inline-flex h-11 items-center justify-center rounded-lg bg-primary text-white px-6 text-sm font-medium shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                className="inline-flex h-11 items-center justify-center rounded-lg bg-blue-600 text-white px-6 text-sm font-medium shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 href="/chat"
               >
                 Join Chat

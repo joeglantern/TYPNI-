@@ -18,7 +18,7 @@ const logos = [
   '/TYPNI-25.jpg',
 ]
 
-export function LogoStrip() {
+export default function LogoStrip() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -28,41 +28,26 @@ export function LogoStrip() {
   if (!mounted) return null
 
   return (
-    <div className="w-full overflow-hidden bg-white/80 backdrop-blur-sm py-12">
-      <div className="relative w-full inline-flex flex-nowrap">
-        <div className="flex items-center justify-center md:justify-start [&_img]:max-w-none animate-marquee">
-          {logos.map((logo, index) => (
-            <div
-              key={`first-${index}`}
-              className="mx-12 flex-shrink-0"
-            >
-              <div className="relative w-32 h-32 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4">
-                <Image
-                  src={logo}
-                  alt={`Partner Logo ${index + 1}`}
-                  fill
-                  className="object-contain p-2 hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center justify-center md:justify-start [&_img]:max-w-none animate-marquee" aria-hidden="true">
-          {logos.map((logo, index) => (
-            <div
-              key={`second-${index}`}
-              className="mx-12 flex-shrink-0"
-            >
-              <div className="relative w-32 h-32 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4">
-                <Image
-                  src={logo}
-                  alt={`Partner Logo ${index + 1}`}
-                  fill
-                  className="object-contain p-2 hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-            </div>
-          ))}
+    <div className="w-full py-12 bg-white">
+      <div className="container mx-auto px-4">
+        <h3 className="text-center text-gray-600 font-medium mb-8">Trusted by organizations worldwide</h3>
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+          {/* Replace these with actual partner logos */}
+          <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-gray-400">Partner 1</span>
+          </div>
+          <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-gray-400">Partner 2</span>
+          </div>
+          <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-gray-400">Partner 3</span>
+          </div>
+          <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-gray-400">Partner 4</span>
+          </div>
+          <div className="w-32 h-12 bg-gray-100 rounded flex items-center justify-center">
+            <span className="text-gray-400">Partner 5</span>
+          </div>
         </div>
       </div>
     </div>
