@@ -20,14 +20,14 @@ import { Home, Book, Calendar, Edit, Image as ImageIcon, Info, Mail, User, Setti
 import { LucideIcon } from 'lucide-react'
 
 export interface NavLink {
-  href: string
-  label: string
-  icon: LucideIcon
+  href: string;
+  label: string;
+  icon: LucideIcon;
 }
 
 export interface MobileNavProps {
-  links: NavLink[]
-  currentPath?: string
+  links?: NavLink[];
+  currentPath?: string;
 }
 
 const defaultLinks: NavLink[] = [
