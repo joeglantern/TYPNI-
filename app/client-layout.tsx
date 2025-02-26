@@ -177,7 +177,7 @@ export default function ClientLayout({
         {pathname !== '/chat' && (
           <header className="border-b sticky top-0 z-50 bg-background/80 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-2" prefetch={true}>
+              <Link href="/" className="hidden md:flex items-center gap-2" prefetch={true}>
                 <div className="relative w-10 h-10">
                   <Image
                     src="/logo.png"
