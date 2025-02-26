@@ -62,6 +62,24 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        instagram: {
+          bg: {
+            DEFAULT: "hsl(var(--background))",
+            dark: "hsl(224 12% 12%)",
+          },
+          fg: {
+            DEFAULT: "hsl(var(--foreground))",
+            dark: "hsl(210 40% 98%)",
+          },
+          accent: {
+            DEFAULT: "hsl(var(--accent))",
+            dark: "hsl(224 12% 20%)",
+          },
+          border: {
+            DEFAULT: "hsl(var(--border))",
+            dark: "hsl(224 12% 25%)",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

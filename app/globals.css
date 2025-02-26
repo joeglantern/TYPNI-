@@ -4,48 +4,48 @@
  
 @layer base {
   :root {
-    --background: 240 20% 99%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 222 47% 11%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 222 47% 11%;
-    --radius: 0.75rem;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
   }
  
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 0 0% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 0 0% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 217 91% 60%;
+    --background: 224 12% 12%;
+    --foreground: 210 40% 98%;
+    --card: 224 12% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 12% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 224 12% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 224 12% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 224 12% 20%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 224 12% 25%;
+    --input: 224 12% 25%;
+    --ring: 216 12% 84%;
   }
 }
  
@@ -88,7 +88,7 @@
 
 /* Enhanced feature card */
 .feature-card {
-  @apply relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-xl;
+  @apply relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   transform: translateY(0);
   background: linear-gradient(
     135deg,
@@ -99,7 +99,7 @@
 
 .feature-card::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/5 opacity-0 transition-opacity duration-300;
+  @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 transition-opacity duration-300;
 }
 
 .feature-card:hover {
@@ -123,19 +123,13 @@
   @apply relative overflow-hidden transition-all duration-300;
 }
 
-.btn-hover-effect::before {
+.btn-hover-effect::after {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] opacity-0 transition-all duration-300;
+  @apply absolute inset-0 bg-white/20 transform scale-x-0 origin-left transition-transform duration-300;
 }
 
-.btn-hover-effect:hover::before {
-  @apply opacity-10;
-  animation: gradient-x 3s linear infinite;
-}
-
-@keyframes gradient-x {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
+.btn-hover-effect:hover::after {
+  @apply scale-x-100;
 }
 
 /* Loading spinner with theme color */
@@ -144,19 +138,43 @@
 }
 
 .animation-delay-200 {
-  animation-delay: 0.2s;
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
 }
 
 .animation-delay-400 {
-  animation-delay: 0.4s;
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
 }
 
 .animation-delay-600 {
   animation-delay: 600ms;
 }
 
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+
 .animation-delay-800 {
   animation-delay: 800ms;
+}
+
+.animation-delay-900 {
+  animation-delay: 900ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animation-delay-1200 {
+  animation-delay: 1200ms;
 }
 
 .animation-delay-2000 {
@@ -807,17 +825,7 @@
 }
 
 .rocket-btn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 50;
-  padding: 1rem;
-  border-radius: 9999px;
-  background: linear-gradient(145deg, #a1205c, #8f1c52);
-  box-shadow: 0 4px 15px rgba(161, 32, 92, 0.3);
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
+  @apply fixed bottom-8 right-8 p-4 bg-primary rounded-full shadow-lg cursor-pointer z-50 transition-transform duration-300;
 }
 
 .rocket-btn:hover {
@@ -870,11 +878,15 @@
 }
 
 .rocket-launch {
-  animation: rocket-launch 1.5s ease-in forwards;
+  @apply transform -translate-y-full transition-transform duration-1000;
 }
 
 .rocket-launch::after {
   height: 60px !important;
   opacity: 1 !important;
   animation: rocket-flame 0.2s infinite !important;
+}
+
+.launching {
+  @apply rotate-[-45deg];
 } 
