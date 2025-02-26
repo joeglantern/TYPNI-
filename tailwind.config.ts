@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config = {
   darkMode: ["class"],
@@ -24,7 +25,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)'],
+        sans: ['var(--font-inter)', ...fontFamily.sans],
         inter: ['var(--font-inter)'],
       },
       colors: {
@@ -106,6 +107,21 @@ const config = {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' },
         },
+        'blob': {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
+        },
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        'dash': {
+          to: {
+            strokeDashoffset: '-10',
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +133,10 @@ const config = {
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
         "marquee": "marquee 25s linear infinite",
+        'blob': 'blob 7s infinite',
+        'bounce-slow': 'bounce 3s infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'dash': 'dash 1.5s linear infinite',
       },
       spacing: {
         '18': '4.5rem',

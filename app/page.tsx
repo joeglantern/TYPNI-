@@ -20,6 +20,7 @@ import { ClientBoundary } from '@/components/client-boundary'
 import Hero from '@/app/components/Hero'
 import { Heart } from 'lucide-react'
 import { LogoStrip } from '@/app/components/LogoStrip'
+import WeConnectSection from '@/app/components/WeConnectSection'
 
 interface Event {
   id: number
@@ -281,10 +282,8 @@ function HomeContent() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
       <Hero />
-      
-      {/* Logo Strip */}
       <LogoStrip />
       
       {/* Features Section */}
@@ -370,6 +369,8 @@ function HomeContent() {
             </div>
         </div>
       </section>
+
+      <WeConnectSection />
 
       {/* Carousel Section */}
       <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background via-muted/50 to-background">
@@ -648,7 +649,7 @@ function HomeContent() {
 
       {/* Audio element for rocket sound */}
       <audio id="rocket-sound" src="/sounds/rocket-launch.mp3" preload="auto" />
-    </div>
+    </>
   )
 }
 
