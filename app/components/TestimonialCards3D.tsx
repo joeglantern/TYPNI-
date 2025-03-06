@@ -5,7 +5,19 @@ import { motion } from 'framer-motion'
 import { useSpring, animated } from '@react-spring/web'
 import Image from 'next/image'
 
-const testimonials = [
+interface TestimonialData {
+  name: string;
+  role: string;
+  quote: string;
+  image: string;
+  color: string;
+}
+
+interface TestimonialCardProps extends TestimonialData {
+  index: number;
+}
+
+const testimonials: TestimonialData[] = [
   {
     name: "Hon. Charlene Ruto",
     role: "Patron",
@@ -29,18 +41,19 @@ const testimonials = [
   },
 ]
 
-function TestimonialCard({ name, role, quote, image, color, index }) {
+function TestimonialCard({ name, role, quote, image, color, index }: TestimonialCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const cardRef = useRef(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
-  const calc = (x, y) => {
-    const rect = cardRef.current.getBoundingClientRect()
+  const calc = (x: number, y: number) => {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return [0, 0, 1]
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
     return [-(y - centerY) / 20, (x - centerX) / 20, 1.1]
   }
 
-  const trans = (x, y, s) => 
+  const trans = (x: number, y: number, s: number) => 
     `perspective(1000px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
   const [props, set] = useSpring(() => ({
@@ -88,14 +101,22 @@ function TestimonialCard({ name, role, quote, image, color, index }) {
                 opacity: 0.5,
               }}
             />
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className="object-cover rounded-full"
-              sizes="96px"
-              priority={index === 0}
-            />
+            {image ? (
+              <Image
+                src={image}
+                alt={name}
+                fill
+                className="object-cover rounded-full"
+                sizes="96px"
+                priority={index === 0}
+              />
+            ) : (
+              <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <span className="text-2xl font-bold text-gray-500 dark:text-gray-400">
+                  {name.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Quote */}
