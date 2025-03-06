@@ -68,6 +68,12 @@ const config = {
           berry: "#900059",
           pink: "#FF0054",
         },
+        white: {
+          DEFAULT: "#FFFFFF",
+          soft: "#F8FAFC",
+          muted: "#F1F5F9",
+          dim: "#E2E8F0",
+        },
         instagram: {
           bg: {
             DEFAULT: "hsl(var(--background))",
