@@ -6,6 +6,7 @@ import { useSpring, animated } from '@react-spring/three'
 import { Html, PerspectiveCamera, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import Image from 'next/image'
+import type { SpringValue } from '@react-spring/three'
 
 interface CardData {
   title: string;
@@ -15,10 +16,14 @@ interface CardData {
 }
 
 interface CardProps extends CardData {
-  position: [number, number, number];
-  rotation: [number, number, number];
+  position: THREE.Vector3Tuple;
+  rotation: THREE.Vector3Tuple;
   scale: number;
   index: number;
+}
+
+interface SpringProps {
+  xys: SpringValue<number[]>;
 }
 
 const cards: CardData[] = [
@@ -115,7 +120,9 @@ function Scene() {
   const { camera } = useThree()
   
   useEffect(() => {
-    camera.position.z = 8
+    if (camera instanceof THREE.PerspectiveCamera) {
+      camera.position.z = 8
+    }
   }, [camera])
 
   return (
