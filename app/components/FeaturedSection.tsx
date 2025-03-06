@@ -8,28 +8,28 @@ const features = [
   {
     title: "Youth Leadership",
     description: "Empowering young leaders through comprehensive training and mentorship programs.",
-    image: "/mediaa/1F1A34 (230).jpg",
+    image: "/mediaa/1F1A6508.jpg",
     link: "/programs",
     color: "#590099", // Violet Hickey
   },
   {
     title: "Community Impact",
     description: "Creating positive change through local and global community initiatives.",
-    image: "/mediaa/1F1A34 (229).jpg",
+    image: "/mediaa/1F1A6444.jpg",
     link: "/about",
     color: "#FFBD00", // Radiant Yellow
   },
   {
     title: "Global Network",
     description: "Connecting youth across borders to foster international collaboration.",
-    image: "/mediaa/1F1A34 (179).jpg",
+    image: "/mediaa/1F1A6469.jpg",
     link: "/network",
     color: "#900059", // Berry Burst
   },
   {
     title: "Innovation Hub",
     description: "Fostering creativity and innovation in youth-led projects.",
-    image: "/mediaa/1F1A34 (44).jpg",
+    image: "/mediaa/1F1A6456.jpg",
     link: "/projects",
     color: "#FF0054", // Flamingo Pink
   },
@@ -65,7 +65,7 @@ export default function FeaturedSection() {
   }
 
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-background to-background/80">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 -left-4 w-72 h-72 bg-[#590099]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
@@ -80,10 +80,10 @@ export default function FeaturedSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#590099] to-[#900059]">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#590099] via-[#FFBD00] to-[#FF0054]">
             Featured Programs
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Discover our initiatives that empower youth and create lasting impact in communities worldwide.
           </p>
         </motion.div>
@@ -103,10 +103,10 @@ export default function FeaturedSection() {
             >
               <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                 {/* Card Background with Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300 z-10" />
                 
                 {/* Feature Image */}
-                <div className="aspect-[4/5] relative">
+                <div className="aspect-[3/4] relative">
                   <Image
                     src={feature.image}
                     alt={feature.title}
@@ -121,27 +121,37 @@ export default function FeaturedSection() {
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 text-white">
-                  <h3 
-                    className="text-2xl font-bold mb-2"
-                    style={{ textShadow: `0 2px 4px rgba(0,0,0,0.5)` }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/90 mb-4 line-clamp-2">
-                    {feature.description}
-                  </p>
-                  <Link
-                    href={feature.link}
-                    className="inline-flex items-center text-sm font-semibold py-2 px-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors border-2"
-                    style={{
-                      borderColor: feature.color,
-                      backgroundColor: `${feature.color}20`,
-                    }}
-                  >
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 
+                      className="text-2xl font-bold mb-3"
+                      style={{ textShadow: `0 2px 4px rgba(0,0,0,0.5)` }}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/90 mb-4 line-clamp-2 text-sm">
+                      {feature.description}
+                    </p>
+                    <Link
+                      href={feature.link}
+                      className="inline-flex items-center text-sm font-semibold py-2 px-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors border-2 group-hover:scale-105 transform-gpu"
+                      style={{
+                        borderColor: feature.color,
+                        backgroundColor: `${feature.color}20`,
+                      }}
+                    >
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </div>
+
+                {/* Decorative Elements */}
+                <div 
+                  className="absolute top-0 right-0 w-24 h-24 opacity-50 group-hover:opacity-75 transition-opacity duration-300"
+                  style={{
+                    background: `radial-gradient(circle at top right, ${feature.color}40, transparent 70%)`,
+                  }}
+                />
               </div>
             </motion.div>
           ))}
