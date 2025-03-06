@@ -7,24 +7,24 @@ import Image from 'next/image'
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Youth Leader",
+    name: "Hon. Charlene Ruto",
+    role: "Patron",
     quote: "TYPNI has transformed my perspective on leadership and community service. The programs they offer are truly life-changing.",
-    image: "/mediaa/1F1A34 (623).jpg",
+    image: "/mediaa/1F1A6508.jpg",
     color: "#590099",
   },
   {
-    name: "Michael Chen",
-    role: "Program Participant",
+    name: "Festus Orina",
+    role: "Program Lead",
     quote: "Being part of the global network has opened up countless opportunities for collaboration and growth.",
-    image: "/mediaa/1F1A34 (930).jpg",
+    image: "/mediaa/1F1A34 (179).jpg",
     color: "#FFBD00",
   },
   {
-    name: "Amara Okafor",
-    role: "Community Ambassador",
+    name: "Joseph Liban",
+    role: "Program Participant",
     quote: "The impact TYPNI has had on our local community is remarkable. They truly empower young people to make a difference.",
-    image: "/mediaa/1F1A34 (1655).jpg",
+    image: "",  // No photo provided
     color: "#900059",
   },
 ]
