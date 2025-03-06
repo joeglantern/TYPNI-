@@ -26,6 +26,9 @@ import GallerySection from './components/GallerySection'
 import FeaturedSection from './components/FeaturedSection'
 import ImpactGallery from './components/ImpactGallery'
 import InitiativesSection from './components/InitiativesSection'
+import ThreeDCardSection from './components/3DCardSection'
+import EventCards3D from './components/EventCards3D'
+import TestimonialCards3D from './components/TestimonialCards3D'
 
 interface Event {
   id: number
@@ -382,6 +385,10 @@ function HomeContent() {
       >
         <WeConnectSection />
       </motion.div>
+
+      <ThreeDCardSection />
+      <EventCards3D />
+      <TestimonialCards3D />
 
       <GallerySection />
 
