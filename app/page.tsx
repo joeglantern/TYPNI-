@@ -29,6 +29,7 @@ import InitiativesSection from './components/InitiativesSection'
 import ThreeDCardSection from './components/3DCardSection'
 import EventCards3D from './components/EventCards3D'
 import TestimonialCards3D from './components/TestimonialCards3D'
+import dynamic from 'next/dynamic'
 
 interface Event {
   id: number
@@ -65,6 +66,22 @@ interface Testimonial {
   featured: boolean
   created_at: string
 }
+
+// Dynamically import the carousel components
+const ProgramCarousel3D = dynamic(() => import('@/app/components/ProgramCarousel3D'), {
+  ssr: false,
+  loading: () => <div className="h-[500px] bg-background animate-pulse" />
+})
+
+const SuccessCarousel3D = dynamic(() => import('@/app/components/SuccessCarousel3D'), {
+  ssr: false,
+  loading: () => <div className="h-[600px] bg-background animate-pulse" />
+})
+
+const EventsCarousel3D = dynamic(() => import('@/app/components/EventsCarousel3D'), {
+  ssr: false,
+  loading: () => <div className="h-[600px] bg-background animate-pulse" />
+})
 
 // Move the main content to a separate client component
 function HomeContent() {
@@ -304,17 +321,22 @@ function HomeContent() {
   return (
     <>
       <Hero />
+      
+      <ProgramCarousel3D />
+      
       <FeaturedSection />
+      
+      <SuccessCarousel3D />
+      
       <InitiativesSection />
+      
+      <EventsCarousel3D />
+      
       <ImpactGallery />
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUpVariants}
-      >
-        <LogoStrip />
-      </motion.div>
+      
+      <WeConnectSection />
+      
+      <LogoStrip />
       
       {/* Features Section with Enhanced Colors */}
       <motion.section
@@ -373,7 +395,7 @@ function HomeContent() {
                 Learn from experienced leaders and industry experts.
               </p>
             </motion.div>
-          </div>
+            </div>
         </div>
       </motion.section>
 
@@ -386,11 +408,8 @@ function HomeContent() {
         <WeConnectSection />
       </motion.div>
 
-      <ThreeDCardSection />
-      <EventCards3D />
-      <TestimonialCards3D />
-
       <GallerySection />
+      <TestimonialCards3D />
 
       {/* Carousel Section */}
       <motion.section
