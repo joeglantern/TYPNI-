@@ -15,21 +15,21 @@ const features = [
   {
     title: "Community Impact",
     description: "Creating positive change through local and global community initiatives.",
-    image: "/mediaa/1F1A6469.jpg",
+    image: "/mediaa/1F1A34 (2258).jpg",
     link: "/about",
     color: "#FFBD00", // Radiant Yellow
   },
   {
     title: "Global Network",
     description: "Connecting youth across borders to foster international collaboration.",
-    image: "/mediaa/1F1A6456.jpg",
+    image: "/mediaa/1F1A34 (1977).jpg",
     link: "/network",
     color: "#900059", // Berry Burst
   },
   {
     title: "Innovation Hub",
     description: "Fostering creativity and innovation in youth-led projects.",
-    image: "/mediaa/1F1A6448.jpg",
+    image: "/mediaa/1F1A6469.jpg",
     link: "/projects",
     color: "#FF0054", // Flamingo Pink
   },
@@ -111,6 +111,9 @@ export default function FeaturedSection() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    quality={90}
                   />
                 </div>
 

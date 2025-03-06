@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 
 const mediaImages = [
+  '/mediaa/1F1A6456.jpg',
+  '/mediaa/1F1A6448.jpg',
   '/mediaa/1F1A34 (230).jpg',
   '/mediaa/1F1A34 (229).jpg',
   '/mediaa/1F1A34 (179).jpg',
@@ -73,6 +75,9 @@ export default function GallerySection() {
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                quality={90}
               />
             </motion.div>
           ))}
