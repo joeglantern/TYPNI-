@@ -5,7 +5,19 @@ import { motion } from 'framer-motion'
 import { useSpring, animated } from '@react-spring/web'
 import Image from 'next/image'
 
-const events = [
+interface EventData {
+  title: string;
+  image: string;
+  date: string;
+  location: string;
+  color: string;
+}
+
+interface EventCardProps extends EventData {
+  index: number;
+}
+
+const events: EventData[] = [
   {
     title: "Youth Summit 2024",
     image: "/mediaa/1F1A34 (1977).jpg",
@@ -29,7 +41,7 @@ const events = [
   },
 ]
 
-function EventCard({ image, title, date, location, color, index }) {
+function EventCard({ image, title, date, location, color, index }: EventCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   const { transform, opacity } = useSpring({
