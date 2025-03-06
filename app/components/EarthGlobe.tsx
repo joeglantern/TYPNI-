@@ -5,6 +5,41 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Loader2 } from 'lucide-react'
 
+// Network path creation utilities
+const createWindingCurve = (radius: number, turns: number, height: number, offset: number = 0) => {
+  const points: THREE.Vector3[] = []
+  const segments = turns * 64
+  
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments
+    const angle = 2 * Math.PI * turns * t + offset
+    const y = height * Math.sin(Math.PI * t)
+    const x = radius * Math.cos(angle)
+    const z = radius * Math.sin(angle)
+    points.push(new THREE.Vector3(x, y, z))
+  }
+  
+  return new THREE.CatmullRomCurve3(points)
+}
+
+const createNetworkPath = (radius: number, points: number, heightVariation: number, twist: number) => {
+  const pathPoints: THREE.Vector3[] = []
+  const angleStep = (Math.PI * 2) / points
+  
+  for (let i = 0; i <= points; i++) {
+    const angle = angleStep * i
+    const twistOffset = (i / points) * twist
+    
+    const x = radius * Math.cos(angle + twistOffset)
+    const z = radius * Math.sin(angle + twistOffset)
+    const y = heightVariation * Math.sin(angle * 2)
+    
+    pathPoints.push(new THREE.Vector3(x, y, z))
+  }
+  
+  return new THREE.CatmullRomCurve3(pathPoints, true)
+}
+
 export default function EarthGlobe() {
   const mountRef = useRef<HTMLDivElement>(null)
   const controlsRef = useRef<OrbitControls | null>(null)
@@ -13,6 +48,9 @@ export default function EarthGlobe() {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const earthRef = useRef<THREE.Mesh | null>(null)
   const cloudsRef = useRef<THREE.Mesh | null>(null)
+  const networkLinesRef = useRef<THREE.Mesh[]>([])
+  const networkPathsRef = useRef<THREE.CatmullRomCurve3[]>([])
+  const transmissionNodesRef = useRef<THREE.Mesh[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<string>('')
@@ -168,6 +206,112 @@ export default function EarthGlobe() {
         cloudsRef.current = clouds
         setDebugInfo(prev => `${prev}\nClouds mesh created`)
         
+        // Create network system
+        const createNetworkSystem = () => {
+          try {
+            // Clear existing network elements
+            networkLinesRef.current.forEach(line => sceneRef.current?.remove(line))
+            transmissionNodesRef.current.forEach(node => sceneRef.current?.remove(node))
+            networkLinesRef.current = []
+            transmissionNodesRef.current = []
+
+            // Create network paths with different parameters
+            const paths = [
+              createNetworkPath(1.3, 8, 0.4, Math.PI), // Equatorial path
+              createNetworkPath(1.25, 6, 0.6, Math.PI * 1.5), // Diagonal path
+              createNetworkPath(1.35, 10, 0.3, Math.PI * 0.5), // Polar path
+              createWindingCurve(1.28, 3, 0.3, Math.PI * 0.25), // Winding path 1
+              createWindingCurve(1.32, 2, -0.4, Math.PI * 0.75), // Winding path 2
+            ]
+            networkPathsRef.current = paths
+
+            // Create glowing tube materials with brand colors
+            const tubeMaterials = [
+              new THREE.MeshPhongMaterial({
+                color: 0x590099, // Violet Hickey
+                transparent: true,
+                opacity: 0.6,
+                shininess: 90,
+                emissive: 0x590099,
+                emissiveIntensity: 0.5,
+              }),
+              new THREE.MeshPhongMaterial({
+                color: 0xFFBD00, // Radiant Yellow
+                transparent: true,
+                opacity: 0.6,
+                shininess: 90,
+                emissive: 0xFFBD00,
+                emissiveIntensity: 0.5,
+              }),
+              new THREE.MeshPhongMaterial({
+                color: 0x900059, // Berry Burst
+                transparent: true,
+                opacity: 0.6,
+                shininess: 90,
+                emissive: 0x900059,
+                emissiveIntensity: 0.5,
+              }),
+              new THREE.MeshPhongMaterial({
+                color: 0xFF0054, // Flamingo Pink
+                transparent: true,
+                opacity: 0.6,
+                shininess: 90,
+                emissive: 0xFF0054,
+                emissiveIntensity: 0.5,
+              }),
+              new THREE.MeshPhongMaterial({
+                color: 0x590099, // Violet Hickey (repeated for last path)
+                transparent: true,
+                opacity: 0.6,
+                shininess: 90,
+                emissive: 0x590099,
+                emissiveIntensity: 0.5,
+              }),
+            ]
+
+            // Create tubes along the paths
+            paths.forEach((path, index) => {
+              const tubeGeometry = new THREE.TubeGeometry(
+                path,
+                100, // segments
+                0.008 + (index * 0.002), // radius varies by path
+                12, // radiusSegments for smoother tubes
+                true
+              )
+              const tube = new THREE.Mesh(tubeGeometry, tubeMaterials[index])
+              sceneRef.current?.add(tube)
+              networkLinesRef.current.push(tube)
+
+              // Create transmission nodes
+              const nodeCount = 5 + index // More nodes on later paths
+              const nodeGeometry = new THREE.SphereGeometry(0.015 + (index * 0.003), 16, 16)
+              const nodeMaterial = new THREE.MeshPhongMaterial({
+                color: tubeMaterials[index].color,
+                emissive: tubeMaterials[index].color,
+                emissiveIntensity: 1,
+                transparent: true,
+                opacity: 0.8,
+              })
+
+              for (let i = 0; i < nodeCount; i++) {
+                const node = new THREE.Mesh(nodeGeometry, nodeMaterial.clone())
+                const position = path.getPoint(i / nodeCount)
+                node.position.copy(position)
+                node.userData.progress = i / nodeCount
+                node.userData.speed = 0.0005 + (index * 0.0002) + (Math.random() * 0.0002)
+                sceneRef.current?.add(node)
+                transmissionNodesRef.current.push(node)
+              }
+            })
+
+            setDebugInfo(prev => `${prev}\nNetwork system created`)
+          } catch (error) {
+            console.error('Error creating network system:', error)
+            setDebugInfo(prev => `${prev}\nError creating network system: ${error}`)
+          }
+        }
+
+        createNetworkSystem()
         setIsLoading(false)
       })
       .catch((err) => {
@@ -193,6 +337,53 @@ export default function EarthGlobe() {
         }
         if (cloudsRef.current) {
           cloudsRef.current.rotation.y += 0.00075
+        }
+
+        // Animate network elements
+        if (networkPathsRef.current?.length > 0) {
+          transmissionNodesRef.current.forEach((node, index) => {
+            if (!node) return
+
+            try {
+              const pathIndex = Math.floor(index / 5) % networkPathsRef.current.length
+              const path = networkPathsRef.current[pathIndex]
+              
+              if (!path) return
+              
+              // Update progress with varying speeds
+              node.userData.progress = (node.userData.progress + (node.userData.speed || 0.001)) % 1
+              
+              // Update position with smooth interpolation
+              const position = path.getPoint(node.userData.progress)
+              if (position) {
+                node.position.copy(position)
+                
+                // Enhanced pulse effect
+                const pulse = Math.sin(currentTime * 0.005 + index * 0.5) * 0.5 + 0.5
+                node.scale.setScalar(1 + pulse * 0.4)
+                
+                const material = node.material as THREE.MeshPhongMaterial
+                if (material) {
+                  material.emissiveIntensity = 0.5 + pulse
+                  material.opacity = 0.6 + pulse * 0.4
+                }
+              }
+            } catch (error) {
+              console.warn('Error animating node:', error)
+            }
+          })
+
+          // Animate network lines
+          networkLinesRef.current.forEach((line, index) => {
+            if (!line) return
+            
+            try {
+              line.rotation.y += 0.0001 * (index + 1)
+              line.rotation.x += 0.00005 * Math.sin(currentTime * 0.001)
+            } catch (error) {
+              console.warn('Error rotating network line:', error)
+            }
+          })
         }
 
         controls.update()
