@@ -4,32 +4,32 @@ import { useInView } from 'react-intersection-observer'
 
 const galleryImages = [
   {
-    src: "/mediaa/1F1A34 (2258).jpg",
+    src: "/mediaa/1F1A34 (230).jpg",
     title: "Community Outreach",
     category: "Impact",
   },
   {
-    src: "/mediaa/1F1A34 (1977).jpg",
+    src: "/mediaa/1F1A34 (229).jpg",
     title: "Youth Leadership",
     category: "Programs",
   },
   {
-    src: "/mediaa/1F1A34 (1655).jpg",
+    src: "/mediaa/1F1A34 (179).jpg",
     title: "Global Connections",
     category: "Network",
   },
   {
-    src: "/mediaa/1F1A34 (1649).jpg",
+    src: "/mediaa/1F1A34 (44).jpg",
     title: "Educational Initiatives",
     category: "Education",
   },
   {
-    src: "/mediaa/1F1A34 (930).jpg",
+    src: "/mediaa/1F1A34 (230).jpg",
     title: "Cultural Exchange",
     category: "Culture",
   },
   {
-    src: "/mediaa/1F1A34 (623).jpg",
+    src: "/mediaa/1F1A34 (229).jpg",
     title: "Innovation Projects",
     category: "Innovation",
   },
@@ -110,6 +110,9 @@ export default function ImpactGallery() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  quality={90}
                 />
 
                 {/* Content Overlay */}

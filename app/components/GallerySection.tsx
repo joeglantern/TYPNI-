@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 
 const mediaImages = [
-  '/mediaa/1F1A6456.jpg',
-  '/mediaa/1F1A6448.jpg',
   '/mediaa/1F1A34 (230).jpg',
   '/mediaa/1F1A34 (229).jpg',
   '/mediaa/1F1A34 (179).jpg',
   '/mediaa/1F1A34 (44).jpg',
+  '/mediaa/1F1A34 (230).jpg',
+  '/mediaa/1F1A34 (229).jpg',
 ]
 
 export default function GallerySection() {

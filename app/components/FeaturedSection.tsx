@@ -8,28 +8,28 @@ const features = [
   {
     title: "Youth Leadership",
     description: "Empowering young leaders through comprehensive training and mentorship programs.",
-    image: "/mediaa/1F1A6444.jpg",
+    image: "/mediaa/1F1A34 (230).jpg",
     link: "/programs",
     color: "#590099", // Violet Hickey
   },
   {
     title: "Community Impact",
     description: "Creating positive change through local and global community initiatives.",
-    image: "/mediaa/1F1A34 (2258).jpg",
+    image: "/mediaa/1F1A34 (229).jpg",
     link: "/about",
     color: "#FFBD00", // Radiant Yellow
   },
   {
     title: "Global Network",
     description: "Connecting youth across borders to foster international collaboration.",
-    image: "/mediaa/1F1A34 (1977).jpg",
+    image: "/mediaa/1F1A34 (179).jpg",
     link: "/network",
     color: "#900059", // Berry Burst
   },
   {
     title: "Innovation Hub",
     description: "Fostering creativity and innovation in youth-led projects.",
-    image: "/mediaa/1F1A6469.jpg",
+    image: "/mediaa/1F1A34 (44).jpg",
     link: "/projects",
     color: "#FF0054", // Flamingo Pink
   },

@@ -16,7 +16,10 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       }
     ],
-    unoptimized: false,
+    unoptimized: process.env.NODE_ENV === 'production',
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -50,7 +53,8 @@ const nextConfig = {
       '@': '.'
     }
     return config
-  }
+  },
+  output: 'standalone',
 }
 
 module.exports = nextConfig 
