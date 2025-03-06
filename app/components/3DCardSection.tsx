@@ -6,7 +6,18 @@ import { useSpring, animated } from '@react-spring/web'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const cards = [
+interface CardData {
+  title: string;
+  image: string;
+  description: string;
+  color: string;
+}
+
+interface CardProps extends CardData {
+  index: number;
+}
+
+const cards: CardData[] = [
   {
     title: "Youth Leadership",
     image: "/mediaa/1F1A6508.jpg",
@@ -33,7 +44,7 @@ const cards = [
   },
 ]
 
-function Card({ image, title, description, color, index }) {
+function Card({ image, title, description, color, index }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
   
   const springProps = useSpring({
