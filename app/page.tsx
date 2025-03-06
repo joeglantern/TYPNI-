@@ -23,6 +23,9 @@ import LogoStrip from '@/app/components/LogoStrip'
 import WeConnectSection from '@/app/components/WeConnectSection'
 import { useInView } from 'react-intersection-observer'
 import GallerySection from './components/GallerySection'
+import FeaturedSection from './components/FeaturedSection'
+import ImpactGallery from './components/ImpactGallery'
+import InitiativesSection from './components/InitiativesSection'
 
 interface Event {
   id: number
@@ -298,6 +301,9 @@ function HomeContent() {
   return (
     <>
       <Hero />
+      <FeaturedSection />
+      <InitiativesSection />
+      <ImpactGallery />
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -307,7 +313,7 @@ function HomeContent() {
         <LogoStrip />
       </motion.div>
       
-      {/* Features Section */}
+      {/* Features Section with Enhanced Colors */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -318,82 +324,53 @@ function HomeContent() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Programs</h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Our <span className="text-[#900059]">Programs</span>
+              </h2>
+              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Discover how we're making a difference in communities around the world through our various initiatives.
               </p>
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-            <Card className="feature-card">
-              <div className="flex h-full flex-col justify-between space-y-4 p-6">
-                <div className="space-y-2">
-                  <BookOpen className="h-12 w-12 text-primary" />
-                  <h3 className="text-2xl font-bold">Education Programs</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Providing access to quality education and learning resources for youth development.
-                  </p>
-                </div>
-                <Link
-                  className="inline-flex items-center text-primary hover:underline"
-                  href="/programs"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
+            {/* Update the features grid with brand colors */}
+            <motion.div variants={fadeInUpVariants} className="space-y-4">
+              <div className="inline-block rounded-lg bg-[#590099] p-1 text-white">
+                <Globe className="h-6 w-6" />
               </div>
-            </Card>
-            <Card className="feature-card">
-              <div className="flex h-full flex-col justify-between space-y-4 p-6">
-                <div className="space-y-2">
-                  <Calendar className="h-12 w-12 text-primary" />
-                  <h3 className="text-2xl font-bold">Events & Workshops</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Regular events and workshops focused on skill development and networking.
-                  </p>
-                </div>
-                <Link
-                  className="inline-flex items-center text-primary hover:underline"
-                  href="/events"
-                >
-                  View events <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
+              <h3 className="text-2xl font-bold">Global Network</h3>
+              <p className="text-muted-foreground">
+                Connect with youth leaders and change-makers from around the world.
+              </p>
+            </motion.div>
+            <motion.div variants={fadeInUpVariants} className="space-y-4">
+              <div className="inline-block rounded-lg bg-[#FFBD00] p-1 text-white">
+                <Users className="h-6 w-6" />
               </div>
-            </Card>
-            <Card className="feature-card">
-              <div className="flex h-full flex-col justify-between space-y-4 p-6">
-                <div className="space-y-2">
-                  <Heart className="h-12 w-12 text-primary" />
-                  <h3 className="text-2xl font-bold">Volunteer Opportunities</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Make a difference by joining our volunteer programs and community initiatives.
-                  </p>
-                </div>
-                <Link
-                  className="inline-flex items-center text-primary hover:underline"
-                  href="/volunteer"
-                >
-                  Get involved <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+              <h3 className="text-2xl font-bold">Community Building</h3>
+              <p className="text-muted-foreground">
+                Create lasting connections and foster collaboration among peers.
+              </p>
+            </motion.div>
+            <motion.div variants={fadeInUpVariants} className="space-y-4">
+              <div className="inline-block rounded-lg bg-[#900059] p-1 text-white">
+                <Lightbulb className="h-6 w-6" />
               </div>
-            </Card>
-            <Card className="feature-card">
-              <div className="flex h-full flex-col justify-between space-y-4 p-6">
-                <div className="space-y-2">
-                  <Users className="h-12 w-12 text-primary" />
-                  <h3 className="text-2xl font-bold">Community Network</h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Connect with like-minded individuals and organizations in our global network.
-                  </p>
-                </div>
-                <Link
-                  className="inline-flex items-center text-primary hover:underline"
-                  href="/membership"
-                >
-                  Join network <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+              <h3 className="text-2xl font-bold">Innovation Hub</h3>
+              <p className="text-muted-foreground">
+                Access resources and support for your innovative projects.
+              </p>
+            </motion.div>
+            <motion.div variants={fadeInUpVariants} className="space-y-4">
+              <div className="inline-block rounded-lg bg-[#FF0054] p-1 text-white">
+                <MessageCircle className="h-6 w-6" />
               </div>
-            </Card>
-            </div>
+              <h3 className="text-2xl font-bold">Mentorship</h3>
+              <p className="text-muted-foreground">
+                Learn from experienced leaders and industry experts.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </motion.section>
 
