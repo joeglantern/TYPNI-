@@ -7,7 +7,21 @@ import { Html, PerspectiveCamera, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import Image from 'next/image'
 
-const cards = [
+interface CardData {
+  title: string;
+  image: string;
+  description: string;
+  color: string;
+}
+
+interface CardProps extends CardData {
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: number;
+  index: number;
+}
+
+const cards: CardData[] = [
   {
     title: "Youth Leadership",
     image: "/mediaa/1F1A6508.jpg",
@@ -34,8 +48,8 @@ const cards = [
   },
 ]
 
-function Card({ position, rotation, scale, image, title, description, color, index }) {
-  const mesh = useRef()
+function Card({ position, rotation, scale, image, title, description, color, index }: CardProps) {
+  const mesh = useRef<THREE.Mesh>(null)
   const [hovered, setHovered] = useState(false)
   const [active, setActive] = useState(false)
   const texture = useTexture(image)
@@ -49,7 +63,7 @@ function Card({ position, rotation, scale, image, title, description, color, ind
   const rotation2 = spring.to([0, 1], [0, Math.PI * 0.1])
 
   useFrame((state) => {
-    if (!active) {
+    if (!active && mesh.current) {
       mesh.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5 + index) * 0.1
       mesh.current.position.y = Math.sin(state.clock.elapsedTime * 0.5 + index) * 0.1
     }
