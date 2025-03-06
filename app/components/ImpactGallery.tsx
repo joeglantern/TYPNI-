@@ -65,12 +65,12 @@ export default function ImpactGallery() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background via-background/80 to-background relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-[#900059]/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#FF0054]/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-[#FFBD00]/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
+        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-[#900059]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
+        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#FF0054]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
+        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-[#FFBD00]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
       </div>
 
       <div className="container mx-auto px-4">
@@ -80,8 +80,10 @@ export default function ImpactGallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Impact Gallery</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#900059] to-[#FF0054]">
+            Our Impact Gallery
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Witness the transformative power of youth engagement through our visual journey.
           </p>
         </motion.div>
@@ -99,9 +101,9 @@ export default function ImpactGallery() {
               variants={itemVariants}
               className="group relative"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg bg-white">
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 
                 {/* Image */}
                 <Image
@@ -119,13 +121,18 @@ export default function ImpactGallery() {
                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <span 
-                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2"
+                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 border-2"
                       style={{
                         backgroundColor: 
-                          image.category === 'Impact' ? '#59009940' :
-                          image.category === 'Programs' ? '#FFBD0040' :
-                          image.category === 'Network' ? '#90005940' :
-                          '#FF005440',
+                          image.category === 'Impact' ? '#59009920' :
+                          image.category === 'Programs' ? '#FFBD0020' :
+                          image.category === 'Network' ? '#90005920' :
+                          '#FF005420',
+                        borderColor:
+                          image.category === 'Impact' ? '#590099' :
+                          image.category === 'Programs' ? '#FFBD00' :
+                          image.category === 'Network' ? '#900059' :
+                          '#FF0054',
                         color: 'white',
                         backdropFilter: 'blur(4px)',
                       }}

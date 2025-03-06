@@ -43,16 +43,24 @@ export default function GallerySection() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-background/80">
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16"
+          className="text-4xl md:text-5xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#FFBD00] to-[#FF0054]"
         >
           Our Impact
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-xl text-gray-600 text-center max-w-2xl mx-auto mb-16"
+        >
+          Creating positive change through youth empowerment and community engagement.
+        </motion.p>
         
         <motion.div
           ref={ref}
@@ -65,7 +73,7 @@ export default function GallerySection() {
             <motion.div
               key={image}
               variants={itemVariants}
-              className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 ${
+              className={`relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white ${
                 index % 2 === 0 ? 'md:translate-y-12' : ''
               }`}
             >
@@ -79,6 +87,7 @@ export default function GallerySection() {
                 loading={index === 0 ? "eager" : "lazy"}
                 quality={90}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </motion.div>

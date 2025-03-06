@@ -65,12 +65,12 @@ export default function FeaturedSection() {
   }
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden bg-white">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-[#590099]/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#FFBD00]/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-[#FF0054]/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
+        <div className="absolute top-1/4 -left-4 w-72 h-72 bg-[#590099]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
+        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#FFBD00]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
+        <div className="absolute top-1/3 -right-4 w-72 h-72 bg-[#FF0054]/5 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
       </div>
 
       <div className="container mx-auto px-4">
@@ -80,8 +80,10 @@ export default function FeaturedSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Programs</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#590099] to-[#900059]">
+            Featured Programs
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Discover our initiatives that empower youth and create lasting impact in communities worldwide.
           </p>
         </motion.div>
@@ -99,9 +101,9 @@ export default function FeaturedSection() {
               variants={itemVariants}
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                 {/* Card Background with Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                 
                 {/* Feature Image */}
                 <div className="aspect-[4/5] relative">
@@ -130,10 +132,10 @@ export default function FeaturedSection() {
                   </p>
                   <Link
                     href={feature.link}
-                    className="inline-flex items-center text-sm font-semibold py-2 px-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors"
+                    className="inline-flex items-center text-sm font-semibold py-2 px-4 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors border-2"
                     style={{
-                      backgroundColor: `${feature.color}40`,
                       borderColor: feature.color,
+                      backgroundColor: `${feature.color}20`,
                     }}
                   >
                     Learn More
