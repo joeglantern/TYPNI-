@@ -16,7 +16,7 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       }
     ],
-    unoptimized: true,
+    unoptimized: process.env.NODE_ENV === 'production',
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
