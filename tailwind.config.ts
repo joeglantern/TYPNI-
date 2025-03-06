@@ -34,6 +34,12 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brand: {
+          violet: "#590099", // Violet Hickey
+          yellow: "#FFBD00", // Radiant Yellow
+          berry: "#900059", // Berry Burst
+          pink: "#FF0054", // Flamingo Pink
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
