@@ -68,17 +68,20 @@ interface Testimonial {
 }
 
 // Dynamically import the carousel components
-const ProgramCarousel3D = dynamic(() => import('@/app/components/ProgramCarousel3D'), {
+const ProgramCarousel3D = dynamic(() => import('./components/ProgramCarousel3D').catch(err => {
+  console.error('Error loading ProgramCarousel3D:', err);
+  return () => <div className="h-[500px] bg-red-100 flex items-center justify-center">Failed to load carousel</div>;
+}), {
   ssr: false,
   loading: () => <div className="h-[500px] bg-background animate-pulse" />
 })
 
-const SuccessCarousel3D = dynamic(() => import('@/app/components/SuccessCarousel3D'), {
+const SuccessCarousel3D = dynamic(() => import('./components/SuccessCarousel3D'), {
   ssr: false,
   loading: () => <div className="h-[600px] bg-background animate-pulse" />
 })
 
-const EventsCarousel3D = dynamic(() => import('@/app/components/EventsCarousel3D'), {
+const EventsCarousel3D = dynamic(() => import('./components/EventsCarousel3D'), {
   ssr: false,
   loading: () => <div className="h-[600px] bg-background animate-pulse" />
 })
@@ -398,15 +401,6 @@ function HomeContent() {
             </div>
         </div>
       </motion.section>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUpVariants}
-      >
-        <WeConnectSection />
-      </motion.div>
 
       <GallerySection />
       <TestimonialCards3D />
