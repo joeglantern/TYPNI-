@@ -12,6 +12,7 @@ import { Footer } from '@/app/components/Footer'
 import { NotificationComponent } from './components/Notification'
 import { supabase } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
+import TypniAI from '@/components/TypniAI'
 
 const publicNavLinks: NavLink[] = [
   { href: "/", label: "Home", icon: Home },
@@ -234,6 +235,7 @@ export default function ClientLayout({
           <Footer />
         )}
         <NotificationComponent />
+        <TypniAI />
       </div>
     </LoadingContext.Provider>
   )
