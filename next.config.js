@@ -39,6 +39,7 @@ const nextConfig = {
       '@radix-ui/react-toast',
     ],
   },
+  cache: true,
   async headers() {
     return [
       {
