@@ -14,9 +14,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'peppy-starship-50c766.netlify.app',
       }
     ],
-    unoptimized: false,
+    unoptimized: true,
+    domains: ['peppy-starship-50c766.netlify.app'],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -69,6 +74,8 @@ const nextConfig = {
     return config
   },
   output: 'standalone',
+  distDir: '.next',
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://peppy-starship-50c766.netlify.app' : '',
 }
 
 module.exports = nextConfig 
