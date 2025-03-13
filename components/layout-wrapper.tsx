@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { MainNav } from '@/app/components/main-nav'
-import { MobileNav } from '@/app/components/mobile-nav'
+import { MobileNav } from '@/components/mobile-nav'
 import { Footer } from '@/app/components/Footer'
 import { ClientBoundary } from '@/components/client-boundary'
 
@@ -15,9 +15,24 @@ interface LayoutWrapperProps {
 
 function LayoutWrapperContent({ children }: LayoutWrapperProps) {
   const [isLoading, setIsLoading] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const isChatRoute = pathname?.startsWith('/chat')
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+    }
+  }, [])
 
   useEffect(() => {
     const handleStart = () => {
@@ -53,8 +68,8 @@ function LayoutWrapperContent({ children }: LayoutWrapperProps) {
       viewport.setAttribute('name', 'viewport')
       document.head.appendChild(viewport)
     }
-    // Set the content
-    viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0')
+    // Set the content - allow user scaling for accessibility
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1')
   }, [])
 
   return (
@@ -62,19 +77,19 @@ function LayoutWrapperContent({ children }: LayoutWrapperProps) {
       {/* Loading Overlay */}
       <div
         className={cn(
-          'fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center transition-opacity duration-300',
+          'fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center transition-opacity duration-200',
           isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
         )}
       >
         <div className="flex flex-col items-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
           <p className="mt-2 text-sm text-muted-foreground">Loading...</p>
         </div>
       </div>
 
       {/* Main Content */}
       <div className={cn(
-        'flex-1 flex flex-col transition-opacity duration-300',
+        'flex-1 flex flex-col transition-opacity duration-200',
         isLoading ? 'opacity-50' : 'opacity-100'
       )}>
         {!isChatRoute && (
@@ -83,13 +98,13 @@ function LayoutWrapperContent({ children }: LayoutWrapperProps) {
               <MainNav />
             </div>
             <div className="md:hidden">
-              <MobileNav />
+              <MobileNav links={[]} currentPath={pathname || ''} />
             </div>
           </>
         )}
         <main className={cn(
           'flex-1',
-          isChatRoute ? 'h-screen' : 'container mx-auto px-4 sm:px-6 lg:px-8 py-4'
+          isChatRoute ? 'h-screen' : 'container mx-auto px-3 sm:px-4 lg:px-6 py-3 sm:py-4'
         )}>
           {children}
         </main>

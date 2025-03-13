@@ -16,10 +16,12 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       }
     ],
-    unoptimized: process.env.NODE_ENV === 'production',
+    unoptimized: false,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    deviceSizes: [320, 420, 640, 768, 1024, 1280, 1536],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -27,8 +29,14 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
-    optimizePackageImports: ['lucide-react'],
-    webpackBuildWorker: true,
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-toast',
+    ],
   },
   async headers() {
     return [

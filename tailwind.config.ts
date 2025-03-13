@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss"
 import { fontFamily } from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
 
 const config = {
   darkMode: ["class"],
@@ -9,15 +10,18 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     container: {
       center: true,
       padding: {
         DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
+        sm: "1.5rem",
+        lg: "2rem",
+        xl: "2.5rem",
+        "2xl": "3rem",
       },
       screens: {
         "2xl": "1400px",
@@ -27,6 +31,10 @@ const config = {
       fontFamily: {
         sans: ['var(--font-inter)', ...fontFamily.sans],
         inter: ['var(--font-inter)'],
+      },
+      screens: {
+        'xs': '480px',
+        '3xl': '1920px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -142,6 +150,14 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      aspectRatio: {
+        '4/3': '4 / 3',
+        '3/2': '3 / 2',
+        '16/9': '16 / 9',
+        '1/1': '1 / 1',
+        '2/3': '2 / 3',
+        '3/4': '3 / 4',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -165,7 +181,7 @@ const config = {
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-5px)" },
         },
         "glow": {
           "0%, 100%": {
@@ -174,7 +190,7 @@ const config = {
           },
           "50%": {
             opacity: "0.5",
-            transform: "scale(1.2)",
+            transform: "scale(1.1)",
           },
         },
         marquee: {
@@ -183,8 +199,8 @@ const config = {
         },
         'blob': {
           '0%': { transform: 'translate(0px, 0px) scale(1)' },
-          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '33%': { transform: 'translate(20px, -30px) scale(1.05)' },
+          '66%': { transform: 'translate(-15px, 15px) scale(0.95)' },
           '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
         'shimmer': {
@@ -199,7 +215,7 @@ const config = {
         'fade-in-up': {
           '0%': {
             opacity: '0',
-            transform: 'translateY(20px)'
+            transform: 'translateY(10px)'
           },
           '100%': {
             opacity: '1',
@@ -209,7 +225,7 @@ const config = {
         'fade-in-down': {
           '0%': {
             opacity: '0',
-            transform: 'translateY(-20px)'
+            transform: 'translateY(-10px)'
           },
           '100%': {
             opacity: '1',
@@ -219,7 +235,7 @@ const config = {
         'fade-in-left': {
           '0%': {
             opacity: '0',
-            transform: 'translateX(-20px)'
+            transform: 'translateX(-10px)'
           },
           '100%': {
             opacity: '1',
@@ -229,7 +245,7 @@ const config = {
         'fade-in-right': {
           '0%': {
             opacity: '0',
-            transform: 'translateX(20px)'
+            transform: 'translateX(10px)'
           },
           '100%': {
             opacity: '1',
@@ -256,23 +272,19 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "scroll": "scroll 40s linear infinite",
-        "scroll-reverse": "scroll-reverse 40s linear infinite",
-        "scroll-up": "scroll-up-main 30s linear infinite",
-        "scroll-up-delayed": "scroll-vertical-delayed 30s linear infinite",
+        "scroll": "scroll 25s linear infinite",
+        "scroll-reverse": "scroll-reverse 25s linear infinite",
+        "scroll-up-main": "scroll-up-main 25s linear infinite",
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
         "marquee": "marquee 25s linear infinite",
-        'blob': 'blob 7s infinite',
-        'bounce-slow': 'bounce 3s infinite',
-        'shimmer': 'shimmer 2s linear infinite',
-        'dash': 'dash 1.5s linear infinite',
-        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
-        'fade-in-down': 'fade-in-down 0.6s ease-out forwards',
-        'fade-in-left': 'fade-in-left 0.6s ease-out forwards',
-        'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
-        'scroll-vertical': 'scroll-vertical 25s linear infinite',
-        'scroll-vertical-delayed': 'scroll-vertical-delayed 25s linear infinite',
+        "blob": "blob 10s infinite",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
+        "fade-in-down": "fade-in-down 0.5s ease-out",
+        "fade-in-left": "fade-in-left 0.5s ease-out",
+        "fade-in-right": "fade-in-right 0.5s ease-out",
+        "dash": "dash 15s linear infinite",
+        "bounce-slow": "bounce 3s infinite",
       },
       spacing: {
         '18': '4.5rem',
@@ -300,6 +312,36 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
     require('@tailwindcss/typography'),
+    plugin(function({ addUtilities }) {
+      const newUtilities = {
+        '.mobile-safe-padding-bottom': {
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)'
+        },
+        '.mobile-safe-padding-top': {
+          paddingTop: 'env(safe-area-inset-top, 0px)'
+        },
+        '.mobile-safe-margin-bottom': {
+          marginBottom: 'env(safe-area-inset-bottom, 0px)'
+        },
+        '.mobile-safe-margin-top': {
+          marginTop: 'env(safe-area-inset-top, 0px)'
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        },
+        '.text-balance': {
+          'text-wrap': 'balance'
+        },
+        '.text-pretty': {
+          'text-wrap': 'pretty'
+        },
+      }
+      addUtilities(newUtilities)
+    })
   ],
 } satisfies Config
 
