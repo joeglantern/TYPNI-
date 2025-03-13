@@ -89,6 +89,7 @@
     "remark-gfm": "4.0.1",
     "sonner": "^1.7.4",
     "streamsearch": "^1.1.0",
+    "styled-components": "^6.1.15",
     "swiper": "11.2.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
@@ -101,6 +102,7 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "5.9.4",
+    "babel-plugin-styled-components": "2.1.4",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0"
   }
