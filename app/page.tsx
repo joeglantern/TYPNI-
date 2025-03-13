@@ -76,15 +76,24 @@ const ProgramCarousel3D = dynamic(() => import('./components/ProgramCarousel3D')
   loading: () => <div className="h-[500px] bg-background animate-pulse" />
 })
 
+// Add display name
+ProgramCarousel3D.displayName = 'ProgramCarousel3D';
+
 const SuccessCarousel3D = dynamic(() => import('./components/SuccessCarousel3D'), {
   ssr: false,
   loading: () => <div className="h-[600px] bg-background animate-pulse" />
 })
 
+// Add display name
+SuccessCarousel3D.displayName = 'SuccessCarousel3D';
+
 const EventsCarousel3D = dynamic(() => import('./components/EventsCarousel3D'), {
   ssr: false,
   loading: () => <div className="h-[600px] bg-background animate-pulse" />
 })
+
+// Add display name
+EventsCarousel3D.displayName = 'EventsCarousel3D';
 
 // Move the main content to a separate client component
 function HomeContent() {
