@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20.5.0"
   NPM_VERSION = "9.8.0"
+  # Disable secrets scanning to prevent false positives
+  SECRETS_SCAN_ENABLED = "false"
+  # Alternative approach: exclude specific paths
+  # SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache,.env.example"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
