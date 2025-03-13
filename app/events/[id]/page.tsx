@@ -21,12 +21,13 @@ interface Event {
 }
 
 interface EventParams {
-  id: string
+  id: string;
+  [key: string]: string;
 }
 
 export default async function EventPage({ params }: PageProps<EventParams>) {
   const resolvedParams = await params;
-  const cookieStore = cookies()
+  const cookieStore = await cookies();
   
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -86,7 +87,7 @@ export default async function EventPage({ params }: PageProps<EventParams>) {
         {/* Display additional images if available */}
         {hasMultipleImages && (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-            {images.slice(1).map((image, index) => (
+            {images.slice(1).map((image: string, index: number) => (
               <div key={index} className="relative aspect-video rounded-lg overflow-hidden">
                 <Image
                   src={image}

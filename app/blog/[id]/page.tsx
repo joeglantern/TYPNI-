@@ -29,13 +29,14 @@ interface BlogPost {
 }
 
 interface BlogParams {
-  id: string
+  id: string;
+  [key: string]: string;
 }
 
 export default async function BlogPostPage({ params }: PageProps<BlogParams>) {
   const resolvedParams = await params;
   const postId = resolvedParams.id;
-  const cookieStore = cookies()
+  const cookieStore = await cookies();
   
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

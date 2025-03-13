@@ -7,11 +7,12 @@ export const dynamic = 'force-dynamic'
 
 interface ChannelParams {
   id: string;
+  [key: string]: string;
 }
 
 export default async function ChannelPage({ params }: PageProps<ChannelParams>) {
   const resolvedParams = await params;
-  const cookieStore = cookies()
+  const cookieStore = await cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
