@@ -20,11 +20,23 @@ function LoginContent() {
     email: '',
     password: ''
   })
+  const [debugInfo, setDebugInfo] = useState<string | null>(null)
 
   useEffect(() => {
     // Check if Supabase is properly initialized
-    console.log('Checking Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Not set')
-    console.log('Checking Supabase Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Not set')
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    
+    const debugText = `
+      Supabase URL: ${supabaseUrl ? 'Set' : 'Not set'}
+      Supabase Key: ${supabaseKey ? 'Set' : 'Not set'}
+      Site URL: ${siteUrl ? 'Set' : 'Not set'}
+      Current URL: ${window.location.href}
+    `;
+    
+    console.log(debugText);
+    setDebugInfo(debugText);
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,6 +97,15 @@ function LoginContent() {
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+        {debugInfo && process.env.NODE_ENV !== 'production' && (
+          <Alert>
+            <details>
+              <summary className="cursor-pointer font-medium">Debug Information</summary>
+              <pre className="mt-2 text-xs whitespace-pre-wrap">{debugInfo}</pre>
+            </details>
           </Alert>
         )}
 
