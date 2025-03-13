@@ -4,7 +4,11 @@ import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
-export default async function ChannelPage({ params }: { params: { id: string } }) {
+interface PageParams {
+  id: string;
+}
+
+export default async function ChannelPage({ params }: { params: PageParams }) {
   const cookieStore = cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
