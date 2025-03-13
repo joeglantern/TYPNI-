@@ -89,7 +89,16 @@ async function optimizeImage(filePath) {
   
   try {
     // Load the image
-    const image = sharp(filePath);
+    let image;
+    try {
+      image = sharp(filePath);
+      await image.metadata(); // Test if image can be processed
+    } catch (err) {
+      console.error(`Error processing ${filePath}: Input file contains unsupported image format`);
+      stats.errors++;
+      return;
+    }
+    
     const metadata = await image.metadata();
     
     // Skip if image is already small
@@ -99,9 +108,12 @@ async function optimizeImage(filePath) {
       return;
     }
     
-    // Create WebP version
-    const webpOptions = { quality: QUALITY_SETTINGS.webp };
-    await image.webp(webpOptions).toFile(path.join(dir, `${baseName}.webp`));
+    // Create WebP version if it doesn't already exist
+    const webpPath = path.join(dir, `${baseName}.webp`);
+    if (!fs.existsSync(webpPath) || !filePath.endsWith('.webp')) {
+      const webpOptions = { quality: QUALITY_SETTINGS.webp };
+      await image.webp(webpOptions).toFile(webpPath);
+    }
     
     // Create responsive versions
     for (const size of SIZES) {
@@ -115,20 +127,26 @@ async function optimizeImage(filePath) {
           withoutEnlargement: true 
         });
       
-      // Save as WebP
-      await resized
-        .webp(webpOptions)
-        .toFile(path.join(dir, `${baseName}-${size.suffix}.webp`));
+      // Save as WebP if it doesn't already exist
+      const sizeWebpPath = path.join(dir, `${baseName}-${size.suffix}.webp`);
+      if (!fs.existsSync(sizeWebpPath) || !filePath.endsWith('.webp')) {
+        await resized
+          .webp({ quality: QUALITY_SETTINGS.webp })
+          .toFile(sizeWebpPath);
+      }
       
-      // Save in original format
-      if (ext === '.jpg' || ext === '.jpeg') {
-        await resized
-          .jpeg({ quality: QUALITY_SETTINGS.jpeg })
-          .toFile(path.join(dir, `${baseName}-${size.suffix}${ext}`));
-      } else if (ext === '.png') {
-        await resized
-          .png({ quality: QUALITY_SETTINGS.png })
-          .toFile(path.join(dir, `${baseName}-${size.suffix}${ext}`));
+      // Save in original format if it doesn't already exist
+      const sizeOrigPath = path.join(dir, `${baseName}-${size.suffix}${ext}`);
+      if (!fs.existsSync(sizeOrigPath) || filePath !== sizeOrigPath) {
+        if (ext === '.jpg' || ext === '.jpeg') {
+          await resized
+            .jpeg({ quality: QUALITY_SETTINGS.jpeg })
+            .toFile(sizeOrigPath);
+        } else if (ext === '.png') {
+          await resized
+            .png({ quality: QUALITY_SETTINGS.png })
+            .toFile(sizeOrigPath);
+        }
       }
     }
     

@@ -723,4 +723,7 @@ export default function HomePage() {
       <HomeContent />
     </ClientBoundary>
   )
-} 
+}
+
+// Add display name
+HomePage.displayName = 'HomePage'; 
