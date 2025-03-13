@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 export async function POST() {
   try {
     // In Next.js 15, cookies() returns a Promise that needs to be awaited
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
