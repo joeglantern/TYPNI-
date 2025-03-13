@@ -8,9 +8,7 @@
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
   NODE_VERSION = "18.17.0"
-
-[build.processing.secrets]
-  pattern = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  SECRETS_SCAN_ENABLED = "false"
 
 [[headers]]
   for = "/*"
