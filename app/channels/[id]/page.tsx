@@ -8,7 +8,13 @@ interface PageParams {
   id: string;
 }
 
-export default async function ChannelPage({ params }: { params: PageParams }) {
+type PageProps = {
+  params: Promise<PageParams>;
+  searchParams?: Record<string, string | string[]>;
+};
+
+export default async function ChannelPage({ params }: PageProps) {
+  const resolvedParams = await params;
   const cookieStore = cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -31,7 +37,7 @@ export default async function ChannelPage({ params }: { params: PageParams }) {
   const { data: channel } = await supabase
     .from('channels')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', resolvedParams.id)
     .single()
 
   if (!channel) {
