@@ -101,6 +101,7 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.23.3",
     "@netlify/plugin-nextjs": "5.9.4",
     "babel-plugin-styled-components": "2.1.4",
     "eslint": "^8.56.0",

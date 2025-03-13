@@ -6,13 +6,23 @@ export async function POST(request: Request) {
   try {
     const { userId } = await request.json()
     const cookieStore = cookies()
+    
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
           get(name: string) {
-            return cookieStore.get(name)?.value
+            const cookie = cookieStore.get(name)
+            return cookie?.value
+          },
+          set(name: string, value: string, options: any) {
+            // This is used for server-side setting of cookies, which we don't need here
+            // but is required by the type
+          },
+          remove(name: string, options: any) {
+            // This is used for server-side removal of cookies, which we don't need here
+            // but is required by the type
           },
         },
       }
