@@ -1,19 +1,15 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { PageProps } from '@/lib/next-types'
 
 export const dynamic = 'force-dynamic'
 
-interface PageParams {
+interface ChannelParams {
   id: string;
 }
 
-type PageProps = {
-  params: Promise<PageParams>;
-  searchParams?: Record<string, string | string[]>;
-};
-
-export default async function ChannelPage({ params }: PageProps) {
+export default async function ChannelPage({ params }: PageProps<ChannelParams>) {
   const resolvedParams = await params;
   const cookieStore = cookies()
   const supabase = createServerClient(
