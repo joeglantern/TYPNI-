@@ -70,10 +70,16 @@ interface Testimonial {
 // Dynamically import the carousel components
 const ProgramCarousel3D = dynamic(() => import('./components/ProgramCarousel3D').catch(err => {
   console.error('Error loading ProgramCarousel3D:', err);
-  return () => <div className="h-[500px] bg-red-100 flex items-center justify-center">Failed to load carousel</div>;
+  const FallbackComponent = () => <div className="h-[500px] bg-red-100 flex items-center justify-center">Failed to load carousel</div>;
+  FallbackComponent.displayName = 'ProgramCarousel3DFallback';
+  return FallbackComponent;
 }), {
   ssr: false,
-  loading: () => <div className="h-[500px] bg-background animate-pulse" />
+  loading: () => {
+    const LoadingComponent = () => <div className="h-[500px] bg-background animate-pulse" />;
+    LoadingComponent.displayName = 'ProgramCarousel3DLoading';
+    return <LoadingComponent />;
+  }
 })
 
 // Add display name
@@ -81,7 +87,11 @@ ProgramCarousel3D.displayName = 'ProgramCarousel3D';
 
 const SuccessCarousel3D = dynamic(() => import('./components/SuccessCarousel3D'), {
   ssr: false,
-  loading: () => <div className="h-[600px] bg-background animate-pulse" />
+  loading: () => {
+    const LoadingComponent = () => <div className="h-[600px] bg-background animate-pulse" />;
+    LoadingComponent.displayName = 'SuccessCarousel3DLoading';
+    return <LoadingComponent />;
+  }
 })
 
 // Add display name
@@ -89,7 +99,11 @@ SuccessCarousel3D.displayName = 'SuccessCarousel3D';
 
 const EventsCarousel3D = dynamic(() => import('./components/EventsCarousel3D'), {
   ssr: false,
-  loading: () => <div className="h-[600px] bg-background animate-pulse" />
+  loading: () => {
+    const LoadingComponent = () => <div className="h-[600px] bg-background animate-pulse" />;
+    LoadingComponent.displayName = 'EventsCarousel3DLoading';
+    return <LoadingComponent />;
+  }
 })
 
 // Add display name
